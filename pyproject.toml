@@ -1,0 +1,147 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "plcforge"
+version = "0.1.0"
+description = "Translate IEC 61131-3 control programs (SCL/ST, Ladder, FBD) to and from Python and C++."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Alexander Hahn", email = "alexanderhahn.br@gmail.com" }]
+maintainers = [{ name = "Alexander Hahn", email = "alexanderhahn.br@gmail.com" }]
+keywords = [
+    "plc",
+    "iec-61131-3",
+    "structured-text",
+    "scl",
+    "ladder-logic",
+    "function-block-diagram",
+    "plcopen",
+    "automation",
+    "transpiler",
+    "industrial-control",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: C++",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Compilers",
+    "Typing :: Typed",
+]
+
+# plcforge itself has no runtime dependencies, and neither does the code it
+# generates.  That is a deliberate constraint: a control program should not
+# acquire a dependency tree on the way out of the engineering tool.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.5",
+    "mypy>=1.8",
+]
+
+[project.urls]
+Homepage = "https://github.com/alex-hahn/plcforge"
+Repository = "https://github.com/alex-hahn/plcforge"
+Issues = "https://github.com/alex-hahn/plcforge/issues"
+Changelog = "https://github.com/alex-hahn/plcforge/blob/main/CHANGELOG.md"
+"Commercial licence" = "https://github.com/alex-hahn/plcforge/blob/main/COMMERCIAL-LICENSE.md"
+
+[project.scripts]
+plcforge = "plcforge.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/plcforge"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/plcforge/templates/plcforge_runtime.hpp" = "plcforge/templates/plcforge_runtime.hpp"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/examples",
+    "/docs",
+    "/README.md",
+    "/LICENSE.md",
+    "/COMMERCIAL-LICENSE.md",
+    "/CHANGELOG.md",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
+addopts = "-ra --strict-markers"
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+source = ["plcforge"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "W",    # warnings
+    "I",    # import sorting
+    "UP",   # pyupgrade
+    "B",    # bugbear
+    "C4",   # comprehensions
+    "SIM",  # simplify
+    "RUF",
+]
+ignore = [
+    "E501",    # line length is handled by the formatter
+    "B008",    # function calls in defaults are used deliberately in the CLI
+    "SIM108",  # a ternary is not always clearer than an if/else
+    "RUF012",  # mutable class attributes are fine on generated dataclasses
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Generated code and the identifiers it carries follow IEC naming, not PEP 8.
+"src/plcforge/runtime/blocks.py" = ["N815", "N803"]
+"src/plcforge/runtime/functions.py" = ["N802", "N803"]
+# `value == pytest.approx(x)` is the documented pytest idiom, not a Yoda condition.
+"tests/*" = ["B011", "SIM300"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src/plcforge"]
+warn_unused_configs = true
+warn_redundant_casts = true
+no_implicit_optional = true
+show_error_codes = true
+pretty = true
+
+[[tool.mypy.overrides]]
+# The IR nodes are dataclasses with deliberately loose payload types; strict
+# checking there would add casts without catching real problems.
+module = "plcforge.ir.nodes"
+disable_error_code = ["assignment"]
