@@ -1,0 +1,131 @@
+(*
+    Conveyor line control.
+
+    A worked example covering the constructs plcforge is expected to handle:
+    an enumeration, a structure, a function, a function block with a timer and
+    a state machine, and a program that ties them together.
+*)
+
+TYPE ConveyorState : (Idle := 0, Starting, Running, Faulted); END_TYPE
+
+TYPE ConveyorSetup :
+STRUCT
+    nominalSpeed : REAL := 1.5;     (* m/s at 100% *)
+    rampTime     : TIME := T#2s;    (* time to reach nominal speed *)
+    jamLimit     : INT  := 3;       (* faults before the line latches out *)
+END_STRUCT
+END_TYPE
+
+
+(* Scale a raw analogue value to engineering units. *)
+FUNCTION ScaleAnalog : REAL
+VAR_INPUT
+    raw     : INT;      (* raw counts, 0..27648 *)
+    minimum : REAL;
+    maximum : REAL;
+END_VAR
+VAR
+    clamped : REAL;
+END_VAR
+    clamped := LIMIT(0.0, INT_TO_REAL(raw), 27648.0);
+    ScaleAnalog := minimum + (maximum - minimum) * clamped / 27648.0;
+END_FUNCTION
+
+
+(* One conveyor segment: start/stop with a ramp and jam supervision. *)
+FUNCTION_BLOCK ConveyorSegment
+VAR_INPUT
+    enable   : BOOL;                (* master enable from the line control *)
+    jam      : BOOL;                (* photo eye blocked longer than allowed *)
+    reset    : BOOL;
+    setup    : ConveyorSetup;
+END_VAR
+VAR_OUTPUT
+    active   : BOOL;                (* segment is transporting *)
+    speed    : REAL;                (* commanded speed in m/s *)
+    state    : ConveyorState;
+    faults   : INT;
+END_VAR
+VAR
+    rampTimer  : TON;
+    jamEdge    : R_TRIG;
+    history    : ARRAY [1..5] OF REAL := [5(0.0)];
+    index      : INT;
+END_VAR
+
+    jamEdge(CLK := jam);
+    rampTimer(IN := enable AND NOT jam, PT := setup.rampTime);
+
+    IF jamEdge.Q THEN
+        faults := faults + 1;
+    END_IF;
+
+    IF reset THEN
+        faults := 0;
+        state  := Idle;
+    END_IF;
+
+    CASE state OF
+        Idle:
+            speed := 0.0;
+            IF enable AND NOT jam THEN
+                state := Starting;
+            END_IF;
+
+        Starting:
+            (* Ramp the command up while the timer runs. *)
+            speed := setup.nominalSpeed * TIME_TO_REAL(rampTimer.ET) / TIME_TO_REAL(setup.rampTime);
+            IF rampTimer.Q THEN
+                state := Running;
+            ELSIF NOT enable THEN
+                state := Idle;
+            END_IF;
+
+        Running:
+            speed := setup.nominalSpeed;
+            IF NOT enable OR jam THEN
+                state := Idle;
+            END_IF;
+
+        Faulted:
+            speed := 0.0;
+    END_CASE;
+
+    IF faults >= setup.jamLimit THEN
+        state := Faulted;
+    END_IF;
+
+    (* Shift the speed history one sample down. *)
+    FOR index := 1 TO 4 BY 1 DO
+        history[index] := history[index + 1];
+    END_FOR;
+    history[5] := speed;
+
+    active := (state = Running) OR (state = Starting);
+END_FUNCTION_BLOCK
+
+
+(* Line control: two segments in sequence plus an infeed inhibit. *)
+PROGRAM ConveyorLine
+VAR
+    infeed      : ConveyorSegment;
+    outfeed     : ConveyorSegment;
+    setup       : ConveyorSetup;
+    lineEnable  : BOOL;
+    infeedJam   : BOOL;
+    outfeedJam  : BOOL;
+    resetButton : BOOL;
+    rawSpeedPot : INT;
+    lineSpeed   : REAL;
+    lineFaulted : BOOL;
+END_VAR
+
+    setup.nominalSpeed := ScaleAnalog(raw := rawSpeedPot, minimum := 0.2, maximum := 2.5);
+
+    infeed(enable := lineEnable, jam := infeedJam, reset := resetButton, setup := setup);
+    outfeed(enable := lineEnable AND infeed.active, jam := outfeedJam,
+            reset := resetButton, setup := setup);
+
+    lineSpeed   := MIN(infeed.speed, outfeed.speed);
+    lineFaulted := (infeed.state = Faulted) OR (outfeed.state = Faulted);
+END_PROGRAM
