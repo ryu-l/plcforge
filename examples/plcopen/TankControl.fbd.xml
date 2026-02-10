@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Function Block Diagram (FUP / FBD) example in the PLCopen TC6 interchange format.
+
+  Two networks, both driven from the measured tank level:
+
+    level ===>[ LT ]===> S  [ RS ]
+    lowSetpoint =>          pumpLatch  Q1 ===> pump
+    level ===>[ GT ]===> R1
+    highSetpoint =>
+
+    level ===>[ GT ]===> IN [ TON ]
+    highSetpoint =>      PT  overfillTimer  Q ===> overfillAlarm
+    T#3s =========>
+
+  The pump latches on below the low setpoint and off above the high setpoint;
+  staying above the high setpoint for three seconds raises the alarm.
+-->
+<project xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <fileHeader companyName="plcforge" productName="plcforge examples" productVersion="0.4.0"
+              creationDateTime="2026-02-18T11:40:00"/>
+  <contentHeader name="TankControl">
+    <coordinateInfo>
+      <fbd><scaling x="1" y="1"/></fbd>
+      <ld><scaling x="1" y="1"/></ld>
+      <sfc><scaling x="1" y="1"/></sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes/>
+    <pous>
+      <pou name="TankControl" pouType="functionBlock">
+        <documentation>Level control for a buffer tank with an overfill alarm.</documentation>
+        <interface>
+          <inputVars>
+            <variable name="level">
+              <type><REAL/></type>
+              <documentation>Measured level in percent</documentation>
+            </variable>
+            <variable name="lowSetpoint">
+              <type><REAL/></type>
+              <initialValue><simpleValue value="20.0"/></initialValue>
+              <documentation>Pump starts below this level</documentation>
+            </variable>
+            <variable name="highSetpoint">
+              <type><REAL/></type>
+              <initialValue><simpleValue value="80.0"/></initialValue>
+              <documentation>Pump stops above this level</documentation>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="pump">
+              <type><BOOL/></type>
+              <documentation>Feed pump contactor</documentation>
+            </variable>
+            <variable name="overfillAlarm">
+              <type><BOOL/></type>
+              <documentation>Level stayed above the high setpoint for too long</documentation>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="pumpLatch"><type><derived name="RS"/></type></variable>
+            <variable name="overfillTimer"><type><derived name="TON"/></type></variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <inVariable localId="1">
+              <position x="20" y="20"/>
+              <connectionPointOut/>
+              <expression>level</expression>
+            </inVariable>
+            <inVariable localId="2">
+              <position x="20" y="60"/>
+              <connectionPointOut/>
+              <expression>lowSetpoint</expression>
+            </inVariable>
+            <inVariable localId="3">
+              <position x="20" y="140"/>
+              <connectionPointOut/>
+              <expression>highSetpoint</expression>
+            </inVariable>
+
+            <block localId="4" typeName="LT">
+              <position x="120" y="20"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn><connection refLocalId="1"/></connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn><connection refLocalId="2"/></connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT"><connectionPointOut/></variable>
+              </outputVariables>
+            </block>
+
+            <block localId="5" typeName="GT">
+              <position x="120" y="120"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn><connection refLocalId="1"/></connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn><connection refLocalId="3"/></connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT"><connectionPointOut/></variable>
+              </outputVariables>
+            </block>
+
+            <block localId="6" typeName="RS" instanceName="pumpLatch" executionOrderId="1">
+              <position x="240" y="40"/>
+              <inputVariables>
+                <variable formalParameter="S">
+                  <connectionPointIn><connection refLocalId="4" formalParameter="OUT"/></connectionPointIn>
+                </variable>
+                <variable formalParameter="R1">
+                  <connectionPointIn><connection refLocalId="5" formalParameter="OUT"/></connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="Q1"><connectionPointOut/></variable>
+              </outputVariables>
+            </block>
+
+            <outVariable localId="7" executionOrderId="2">
+              <position x="360" y="40"/>
+              <connectionPointIn><connection refLocalId="6" formalParameter="Q1"/></connectionPointIn>
+              <expression>pump</expression>
+            </outVariable>
+
+            <inVariable localId="8">
+              <position x="120" y="220"/>
+              <connectionPointOut/>
+              <expression>T#3s</expression>
+            </inVariable>
+
+            <block localId="9" typeName="TON" instanceName="overfillTimer" executionOrderId="3">
+              <position x="240" y="180"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn><connection refLocalId="5" formalParameter="OUT"/></connectionPointIn>
+                </variable>
+                <variable formalParameter="PT">
+                  <connectionPointIn><connection refLocalId="8"/></connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="Q"><connectionPointOut/></variable>
+                <variable formalParameter="ET"><connectionPointOut/></variable>
+              </outputVariables>
+            </block>
+
+            <outVariable localId="10" executionOrderId="4">
+              <position x="360" y="180"/>
+              <connectionPointIn><connection refLocalId="9" formalParameter="Q"/></connectionPointIn>
+              <expression>overfillAlarm</expression>
+            </outVariable>
+          </FBD>
+        </body>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations/>
+  </instances>
+</project>
