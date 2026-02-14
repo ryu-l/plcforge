@@ -8,7 +8,7 @@
 from .diagnostics import Diagnostic, DiagnosticBag, Severity, TranslationError
 from .pipeline import TranslationResult, available_targets, load_sources, prepare, translate
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "Diagnostic",

@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest a language construct, a target or a workflow
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do
+      description: Describe the situation, not the solution. The best feature requests start with a blocked workflow.
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: An example
+      description: The source you want to translate, and what you would like out of it.
+      render: pascal
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Structured Text / SCL frontend
+        - Ladder / FBD (PLCopen XML) frontend
+        - Python frontend (lifting)
+        - Python backend
+        - C++ backend
+        - Structured Text backend
+        - Runtime and scan engine
+        - Command line interface
+        - Documentation
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What you do today instead

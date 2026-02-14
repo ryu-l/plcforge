@@ -1,0 +1,65 @@
+name: Bug report
+description: plcforge translated something incorrectly, or refused to
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The most useful thing you can attach is a **minimal source file that
+        reproduces the problem** — it goes straight into the test suite.
+        Ten lines beat a paragraph, and please strip anything confidential.
+
+  - type: textarea
+    id: source
+    attributes:
+      label: PLC source
+      description: The smallest input that shows the problem.
+      render: pascal
+      placeholder: |
+        FUNCTION_BLOCK Example
+        VAR a, b : INT; END_VAR
+            a := b / 2;
+        END_FUNCTION_BLOCK
+    validations:
+      required: true
+
+  - type: input
+    id: command
+    attributes:
+      label: Command
+      placeholder: plcforge convert Example.scl -t python
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: The generated output or the error, as plcforge printed it.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: If it is a semantic difference, saying which IEC rule applies helps a lot.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "Output of: plcforge --version && python --version"
+      placeholder: plcforge 0.4.0, Python 3.12.3
+    validations:
+      required: true
+
+  - type: input
+    id: origin
+    attributes:
+      label: Where the source came from
+      description: Which engineering tool exported it, if any.
+      placeholder: TIA Portal V19, PLCopen XML export

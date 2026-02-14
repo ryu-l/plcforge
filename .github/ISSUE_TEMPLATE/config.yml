@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Commercial licence enquiry
+    url: https://github.com/alex-hahn/plcforge/blob/main/COMMERCIAL-LICENSE.md
+    about: Using plcforge in or for a business — describe the use and get a written answer.
+  - name: Security report
+    url: https://github.com/alex-hahn/plcforge/blob/main/SECURITY.md
+    about: Please report vulnerabilities privately rather than in an issue.
+  - name: How something translates
+    url: https://github.com/alex-hahn/plcforge/blob/main/docs/semantics.md
+    about: The catalogue of places where IEC 61131-3 and the target languages disagree.
