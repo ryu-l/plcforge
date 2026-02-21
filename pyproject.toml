@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "plcforge"
-version = "0.2.0"
+version = "0.3.0"
 description = "Translate IEC 61131-3 control programs (SCL/ST, Ladder, FBD) to and from Python and C++."
 readme = "README.md"
 requires-python = ">=3.10"
