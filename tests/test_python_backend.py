@@ -322,3 +322,53 @@ def test_generated_module_is_valid_python_with_no_undefined_names(tmp_path) -> N
     block = module.Everything()(a=4, b=-9.0, c="abcd")
     assert block.r == pytest.approx(3.0 + 4.0 + 4.0)
     assert block.grid[1, 2] == 4
+
+
+class TestHostileText:
+    """Paths and comments are arbitrary text and must not break the output."""
+
+    def _project(self, source_files: list[str], comment: str | None = None):
+        from plcforge.ir.nodes import (
+            Assign,
+            Literal,
+            Pou,
+            PouKind,
+            Project,
+            VarBlock,
+            VarDecl,
+            VarKind,
+            VarRef,
+        )
+        from plcforge.ir.types import BOOL
+
+        pou = Pou(
+            name="Unit",
+            kind=PouKind.FUNCTION_BLOCK,
+            comment=comment,
+            var_blocks=[
+                VarBlock(
+                    kind=VarKind.OUTPUT,
+                    declarations=[VarDecl(name="flag", type=BOOL, comment=comment)],
+                )
+            ],
+            body=[Assign(target=VarRef(name="flag"), value=Literal(value=True, type=BOOL))],
+        )
+        return Project(name="unit", pous=[pou], source_files=source_files)
+
+    def test_a_windows_source_path_does_not_break_the_docstring(self) -> None:
+        """A backslash in a path is an escape sequence inside a docstring."""
+        code = emit_project(self._project([r"D:\a\plant\Motor.scl"]))
+        compile(code, "<generated>", "exec")
+        assert "Motor.scl" in code
+
+    def test_a_comment_containing_a_backslash_or_quotes_is_escaped(self) -> None:
+        code = emit_project(self._project(["unit.scl"], comment=r'path C:\tmp and """ quotes'))
+        compile(code, "<generated>", "exec")
+
+    def test_a_scaffolded_package_survives_a_windows_path(self) -> None:
+        from plcforge.backends.python.project import scaffold_project
+
+        files = scaffold_project(self._project([r"D:\a\plant\Motor.scl"]))
+        for name, content in files.items():
+            if name.endswith(".py"):
+                compile(content, name, "exec")

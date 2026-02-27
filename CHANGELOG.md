@@ -6,6 +6,13 @@ All notable changes are recorded here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- A Windows source path no longer breaks the generated module. The path is
+  embedded in the module docstring, where a backslash is an escape sequence, so
+  `D:\a\plant\Motor.scl` produced Python that would not parse. Paths and
+  comments are now escaped wherever they land in a docstring, and a source path
+  containing `*)` can no longer close a Structured Text comment early.
+
 ## [0.4.0] - 2026-02-27
 
 ### Added

@@ -195,3 +195,21 @@ def test_repeat_and_while_survive_the_round_trip(tmp_path) -> None:
     module = load_generated(emit_python(again, None, DiagnosticBag()), "rt_loops")
     block = module.Loops()()
     assert (block.total, block.guard) == (15, 3)
+
+
+def test_a_structured_text_comment_cannot_close_itself_early() -> None:
+    """A source path containing '*)' would terminate the comment it sits in."""
+    from plcforge.ir.nodes import Assign, Literal, Pou, PouKind, Project, VarRef
+    from plcforge.ir.types import BOOL
+
+    pou = Pou(
+        name="Unit",
+        kind=PouKind.FUNCTION_BLOCK,
+        comment="ends with *) early",
+        body=[Assign(target=VarRef(name="flag"), value=Literal(value=True, type=BOOL))],
+    )
+    text = emit_st(Project(name="unit", pous=[pou], source_files=["a*)b.scl"]), None, DiagnosticBag())
+
+    reparsed, diagnostics = prepare_source(text, "unit.st")
+    assert not diagnostics.has_errors, diagnostics.summary()
+    assert reparsed.pou("Unit") is not None

@@ -98,10 +98,15 @@ class StEmitter:
 
     # ------------------------------------------------------------------ #
 
+    @staticmethod
+    def _comment_safe(text: str) -> str:
+        """Keep a nested ``*)`` from closing the comment early."""
+        return text.replace("*)", "* )")
+
     def emit_project(self) -> str:
         parts: list[str] = []
         if self.options.header and self.project.source_files:
-            sources = ", ".join(self.project.source_files)
+            sources = self._comment_safe(", ".join(self.project.source_files))
             parts.append(f"(* Translated from {sources} by plcforge. *)")
         for enum in self.project.enums:
             parts.append(self.emit_enum(enum))
@@ -136,7 +141,7 @@ class StEmitter:
         if self.options.header and pou.source_language not in ("ST", ""):
             lines.append(f"(* Translated from {pou.source_language} by plcforge. *)")
         if pou.comment and self.options.comments:
-            lines.append(f"(* {pou.comment} *)")
+            lines.append(f"(* {self._comment_safe(pou.comment)} *)")
 
         header = f"{pou.kind.value} {pou.name}"
         if pou.kind is PouKind.FUNCTION and pou.return_type is not None:
@@ -168,7 +173,7 @@ class StEmitter:
         address = f" AT {declaration.address}" if declaration.address else ""
         initial = f" := {self.expression(declaration.initial)}" if declaration.initial is not None else ""
         comment = (
-            f"  (* {declaration.comment} *)"
+            f"  (* {self._comment_safe(declaration.comment)} *)"
             if declaration.comment and self.options.comments
             else ""
         )
@@ -200,7 +205,7 @@ class StEmitter:
     def statement(self, statement: Stmt, indent: str) -> list[str]:
         lines: list[str] = []
         if statement.comment and self.options.comments:
-            lines.append(f"{indent}(* {statement.comment} *)")
+            lines.append(f"{indent}(* {self._comment_safe(statement.comment)} *)")
 
         if isinstance(statement, Assign):
             lines.append(f"{indent}{self.expression(statement.target)} := {self.expression(statement.value)};")

@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from ...diagnostics import DiagnosticBag
 from ...ir.nodes import Pou, PouKind, Project
 from ..naming import class_name, module_name
-from .emitter import PythonEmitter, PythonOptions
+from .emitter import PythonEmitter, PythonOptions, _docstring_safe
 
 __all__ = ["ScaffoldOptions", "scaffold_project"]
 
@@ -113,9 +113,10 @@ def _package_init(project: Project, package: str, logic_module: str, options: Sc
     exported += [class_name(e.name) for e in project.enums]
     names = ", ".join(sorted(set(exported))) or "*"
     listed = ",\n".join(f'    "{name}"' for name in sorted(set(exported)))
+    sources = _docstring_safe(", ".join(project.source_files) or "PLC sources")
     return (
-        f'"""{options.description}\n\n'
-        f"Translated from {', '.join(project.source_files) or 'PLC sources'}.\n"
+        f'"""{_docstring_safe(options.description)}\n\n'
+        f"Translated from {sources}.\n"
         f'"""\n\n'
         f"from .{logic_module} import {names}\n\n"
         f'__version__ = "{options.version}"\n\n'
