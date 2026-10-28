@@ -1,0 +1,44 @@
+# examples pipeline + generated C++ syntax check (equivalent to: make examples cpp) — 2026-10-28
+# commands:
+#   plcforge --strict check examples --summary
+#   plcforge convert examples/scl -t python -o build/python --name conveyor
+#   plcforge convert examples/scl -t cpp -o build/cpp --name conveyor
+#   plcforge convert examples/plcopen/MotorStarter.ld.xml -t st -o build/st
+#   plcforge convert examples/plcopen/TankControl.fbd.xml -t st -o build/st
+#   plcforge lift examples/python/pump_controller.py -o build/st/PumpStation.st
+#   plcforge scaffold plant --from examples/scl -o build/plant --force
+#   c++ -std=c++17 -Wall -Wextra -Werror -O2 -Ibuild/cpp -fsyntax-only build/cpp/conveyor.hpp
+POU              KIND            LANGUAGE  VARIABLES  STATEMENTS
+---------------  --------------  --------  ---------  ----------
+MotorStarter     FUNCTION_BLOCK  LD        6          3
+TankControl      FUNCTION_BLOCK  FBD       7          4
+duty_percent     FUNCTION        PY        3          2
+Pump             FUNCTION_BLOCK  PY        10         6
+PumpStation      PROGRAM         PY        9          5
+ScaleAnalog      FUNCTION        ST        4          2
+ConveyorSegment  FUNCTION_BLOCK  ST        12         9
+ConveyorLine     PROGRAM         ST        10         5
+
+ConveyorSetup    STRUCT          -         3          -
+PumpState        ENUM            -         4          -
+ConveyorState    ENUM            -         4          -
+wrote build/python/conveyor.py
+wrote build/cpp/conveyor.hpp
+wrote build/cpp/plcforge_runtime.hpp
+wrote build/st/MotorStarter.ld.st
+wrote build/st/TankControl.fbd.st
+wrote build/st/PumpStation.st
+wrote build/plant/.gitignore
+wrote build/plant/README.md
+wrote build/plant/pyproject.toml
+wrote build/plant/src/plant/__init__.py
+wrote build/plant/src/plant/main.py
+wrote build/plant/src/plant/plant.py
+wrote build/plant/src/plant/runtime/__init__.py
+wrote build/plant/src/plant/runtime/blocks.py
+wrote build/plant/src/plant/runtime/clock.py
+wrote build/plant/src/plant/runtime/functions.py
+wrote build/plant/src/plant/runtime/scan.py
+wrote build/plant/src/plant/runtime/types.py
+wrote build/plant/tests/test_plant.py
+generated C++ compiles cleanly

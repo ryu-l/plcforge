@@ -1,0 +1,5 @@
+# ruff check . — 2026-10-28
+All checks passed!
+
+# mypy — 2026-10-28
+Success: no issues found in 35 source files
