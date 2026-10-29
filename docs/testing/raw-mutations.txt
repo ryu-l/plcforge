@@ -1,0 +1,78 @@
+=== unmodified control ===
+...                                                                      [100%]
+3 passed in 1.50s
+exit_code=0
+=== signed-division: src/plcforge/runtime/functions.py: 'return -quotient if (dividend < 0) != (divisor < 0) else quotient' -> 'return dividend // divisor' ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_numeric_matrix_against_oracle_and_cpp[direct] ______________
+tests/test_offline_differential.py:99: in test_numeric_matrix_against_oracle_and_cpp
+    assert_numeric(trace, expected)
+tests/test_offline_differential.py:58: in assert_numeric
+    assert tuple(got[:5]) == want[:5], f"scan {scan}"
+E   AssertionError: scan 0
+E   assert (-3, 3, -9, 52, 9) == (-2, -1, -9, 52, 9)
+E     
+E     At index 0 diff: -3 != -2
+E     Use -v to get more diff
+=========================== short test summary info ============================
+FAILED tests/test_offline_differential.py::test_numeric_matrix_against_oracle_and_cpp[direct]
+1 failed in 0.92s
+exit_code=1
+mutant=signed-division killed=True
+=== exclusive-loop: src/plcforge/runtime/functions.py: 'return iter(range(start, stop + (1 if step > 0 else -1), step))' -> 'return iter(range(start, stop, step))' ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_numeric_matrix_against_oracle_and_cpp[direct] ______________
+tests/test_offline_differential.py:99: in test_numeric_matrix_against_oracle_and_cpp
+    assert_numeric(trace, expected)
+tests/test_offline_differential.py:58: in assert_numeric
+    assert tuple(got[:5]) == want[:5], f"scan {scan}"
+E   AssertionError: scan 0
+E   assert (-2, -1, -9, 52, 8) == (-2, -1, -9, 52, 9)
+E     
+E     At index 4 diff: 8 != 9
+E     Use -v to get more diff
+=========================== short test summary info ============================
+FAILED tests/test_offline_differential.py::test_numeric_matrix_against_oracle_and_cpp[direct]
+1 failed in 0.89s
+exit_code=1
+mutant=exclusive-loop killed=True
+=== timer-boundary: src/plcforge/runtime/blocks.py: 'self.Q = self.ET >= self.PT' -> 'self.Q = self.ET > self.PT' ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_timer_edges_reset_and_instance_isolation[direct] _____________
+tests/test_offline_differential.py:201: in test_timer_edges_reset_and_instance_isolation
+    assert_state(trace)
+tests/test_offline_differential.py:149: in assert_state
+    assert got == pytest.approx(expected, abs=1e-9)
+E   assert (1, 0, 1.5, 2, 0, 0.5) == approx((1 ± 1....5 ± 1.0e-09))
+E     
+E     comparison failed. Mismatched elements: 1 / 6:
+E     Max absolute difference: 1
+E     Max relative difference: inf
+E     Index | Obtained | Expected   
+E     1     | 0        | 1 ± 1.0e-09
+=========================== short test summary info ============================
+FAILED tests/test_offline_differential.py::test_timer_edges_reset_and_instance_isolation[direct]
+1 failed in 0.69s
+exit_code=1
+mutant=timer-boundary killed=True
+=== name-collision: src/plcforge/backends/naming.py: 'index = 2' -> 'index = 3' ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ TestIdentifierMapping.test_collisions_are_numbered_from_two_without_disturbing_new_names _
+tests/test_expected_logic.py:116: in test_collisions_are_numbered_from_two_without_disturbing_new_names
+    assert unique("motor", taken) == "motor_2"
+E   AssertionError: assert 'motor_3' == 'motor_2'
+E     
+E     - motor_2
+E     ?       ^
+E     + motor_3
+E     ?       ^
+=========================== short test summary info ============================
+FAILED tests/test_expected_logic.py::TestIdentifierMapping::test_collisions_are_numbered_from_two_without_disturbing_new_names
+1 failed in 0.05s
+exit_code=1
+mutant=name-collision killed=True
+SUMMARY: 4/4 mutants killed; control passed

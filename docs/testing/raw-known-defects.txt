@@ -1,0 +1,47 @@
+$ /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python -m pytest -v --runxfail --tb=short tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_conversion_matches_independent_expectation tests/test_offline_differential.py::test_cpp_forward_function_block_dependency tests/test_offline_differential.py::test_roundtrip_function_cpp_is_warning_free
+============================= test session starts ==============================
+platform darwin -- Python 3.13.12, pytest-9.2.0, pluggy-1.7.0 -- /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/mac/.tds/workspaces/01a18317-b201-7401-9330-9230e8e26445
+configfile: pyproject.toml
+plugins: cov-7.1.0
+collecting ... collected 3 items
+
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_conversion_matches_independent_expectation FAILED [ 33%]
+tests/test_offline_differential.py::test_cpp_forward_function_block_dependency FAILED [ 66%]
+tests/test_offline_differential.py::test_roundtrip_function_cpp_is_warning_free FAILED [100%]
+
+=================================== FAILURES ===================================
+_ TestLiftedHandWrittenPython.test_lifted_conversion_matches_independent_expectation _
+tests/test_expected_logic.py:287: in test_lifted_conversion_matches_independent_expectation
+    assert module.narrowed(2.9) == 2
+           ^^^^^^^^^^^^^^^^^^^^
+<generated:expected_conversion>:25: in narrowed
+    ???
+E   NameError: name 'TO_DINT' is not defined
+__________________ test_cpp_forward_function_block_dependency __________________
+tests/test_offline_differential.py:229: in test_cpp_forward_function_block_dependency
+    output = cpp_output(
+tests/offline_support.py:68: in cpp_output
+    raise CompilationError(result.stderr)
+E   offline_support.CompilationError: In file included from main.cpp:2:
+E   ./offline.hpp:19:5: error: unknown type name 'Cell'
+E      19 |     Cell child;
+E         |     ^
+E   1 error generated.
+_________________ test_roundtrip_function_cpp_is_warning_free __________________
+tests/test_offline_differential.py:261: in test_roundtrip_function_cpp_is_warning_free
+    output = cpp_output(
+tests/offline_support.py:68: in cpp_output
+    raise CompilationError(result.stderr)
+E   offline_support.CompilationError: In file included from main.cpp:2:
+E   ./offline.hpp:18:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      18 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   1 error generated.
+=========================== short test summary info ============================
+FAILED tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_conversion_matches_independent_expectation
+FAILED tests/test_offline_differential.py::test_cpp_forward_function_block_dependency
+FAILED tests/test_offline_differential.py::test_roundtrip_function_cpp_is_warning_free
+============================== 3 failed in 0.53s ===============================
+exit_code=1

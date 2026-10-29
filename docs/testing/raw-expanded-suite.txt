@@ -1,0 +1,348 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.12, pytest-9.2.0, pluggy-1.7.0 -- /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/mac/.tds/workspaces/01a18317-b201-7401-9330-9230e8e26445
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-7.1.0
+collecting ... collected 228 items
+
+tests/test_cli.py::TestConvert::test_writes_a_python_module wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_writes_a_python_module0/generated/latch.py
+PASSED
+tests/test_cli.py::TestConvert::test_writes_to_standard_output_by_default PASSED
+tests/test_cli.py::TestConvert::test_cpp_target_writes_the_runtime_too wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_cpp_target_writes_the_run0/cpp/latch.hpp
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_cpp_target_writes_the_run0/cpp/plcforge_runtime.hpp
+PASSED
+tests/test_cli.py::TestConvert::test_no_runtime_flag wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_no_runtime_flag0/cpp/latch.hpp
+PASSED
+tests/test_cli.py::TestConvert::test_st_target_round_trips_a_ladder_file wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_st_target_round_trips_a_l0/st/MotorStarter.ld.st
+PASSED
+tests/test_cli.py::TestConvert::test_dry_run_writes_nothing PASSED
+tests/test_cli.py::TestConvert::test_a_directory_of_sources_is_translated_as_one_project wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_a_directory_of_sources_is0/generated/plant.py
+PASSED
+tests/test_cli.py::TestConvert::test_missing_source_is_reported_without_a_traceback PASSED
+tests/test_cli.py::TestConvert::test_a_syntax_error_gives_exit_code_one PASSED
+tests/test_cli.py::TestCheck::test_clean_sources_exit_zero PASSED
+tests/test_cli.py::TestCheck::test_summary_lists_the_parsed_pous PASSED
+tests/test_cli.py::TestCheck::test_strict_turns_warnings_into_a_failure PASSED
+tests/test_cli.py::TestCheck::test_quiet_hides_warnings PASSED
+tests/test_cli.py::TestScaffold::test_generates_a_runnable_project wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/.gitignore
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/README.md
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/pyproject.toml
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/main.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/plant.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/runtime/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/runtime/blocks.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/runtime/clock.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/runtime/functions.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/runtime/scan.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/src/plant/runtime/types.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_generates_a_runnable_proj0/plant/tests/test_plant.py
+PASSED
+tests/test_cli.py::TestScaffold::test_the_generated_project_has_no_dependency_on_plcforge wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/.gitignore
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/README.md
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/pyproject.toml
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/main.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/plant.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/runtime/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/runtime/blocks.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/runtime/clock.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/runtime/functions.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/runtime/scan.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/src/plant/runtime/types.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_has0/plant/tests/test_plant.py
+PASSED
+tests/test_cli.py::TestScaffold::test_the_generated_project_runs_and_passes_its_tests wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/.gitignore
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/README.md
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/pyproject.toml
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/main.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/plant.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/runtime/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/runtime/blocks.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/runtime/clock.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/runtime/functions.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/runtime/scan.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/src/plant/runtime/types.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_the_generated_project_run0/plant/tests/test_plant.py
+PASSED
+tests/test_cli.py::TestScaffold::test_refuses_to_overwrite_without_force wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/.gitignore
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/README.md
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/pyproject.toml
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/main.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/plant.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/runtime/__init__.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/runtime/blocks.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/runtime/clock.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/runtime/functions.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/runtime/scan.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/src/plant/runtime/types.py
+wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_refuses_to_overwrite_with0/plant/tests/test_plant.py
+PASSED
+tests/test_cli.py::TestLift::test_python_becomes_structured_text wrote /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/pytest-of-mac/pytest-18/test_python_becomes_structured0/PumpStation.st
+PASSED
+tests/test_cli.py::TestLift::test_lifting_a_module_with_no_pous_warns PASSED
+tests/test_cli.py::TestGeneral::test_info_lists_languages_and_targets PASSED
+tests/test_cli.py::TestGeneral::test_no_command_prints_help PASSED
+tests/test_cli.py::TestGeneral::test_version PASSED
+tests/test_cli.py::TestGeneral::test_module_entry_point PASSED
+tests/test_cpp_backend.py::TestStructure::test_the_runtime_header_ships_alongside_the_translation PASSED
+tests/test_cpp_backend.py::TestStructure::test_the_runtime_can_be_left_out PASSED
+tests/test_cpp_backend.py::TestStructure::test_types_map_to_fixed_width_integers PASSED
+tests/test_cpp_backend.py::TestStructure::test_arrays_keep_their_bounds_in_the_type PASSED
+tests/test_cpp_backend.py::TestStructure::test_a_case_of_single_labels_becomes_a_switch PASSED
+tests/test_cpp_backend.py::TestStructure::test_a_case_with_ranges_becomes_a_branch_chain PASSED
+tests/test_cpp_backend.py::TestStructure::test_function_block_calls_assign_fields_then_invoke PASSED
+tests/test_cpp_backend.py::TestStructure::test_an_undeclared_loop_counter_is_declared PASSED
+tests/test_cpp_backend.py::TestStructure::test_a_descending_loop_compares_the_other_way PASSED
+tests/test_cpp_backend.py::TestStructure::test_the_namespace_is_configurable PASSED
+tests/test_cpp_backend.py::TestCompiled::test_the_generated_header_compiles_without_warnings PASSED
+tests/test_cpp_backend.py::TestCompiled::test_timers_behave_identically_to_the_python_backend PASSED
+tests/test_cpp_backend.py::TestCompiled::test_integer_division_and_modulo_match_iec PASSED
+tests/test_cpp_backend.py::TestCompiled::test_array_bounds_are_enforced PASSED
+tests/test_cpp_backend.py::TestCompiled::test_the_example_project_compiles PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%IX0.0-input_x0_0] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%QW2.3-output_w2_3] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%MD5-memory_d5] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%ix0.0-input_x0_0] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[Motor Start-Motor_Start] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[9volts-_9volts] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[already_fine-already_fine] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_python_keywords_gain_an_underscore_and_others_do_not PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_cpp_keywords_gain_an_underscore_and_others_do_not PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_class_names_keep_the_authors_spelling PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_module_names_are_snake_case PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_collisions_are_numbered_from_two_without_disturbing_new_names PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_identifiers_hostile_to_both_targets_still_run PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_named_variables_keep_names_and_addresses_are_metadata PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_a_lifted_tank_matches_its_hand_computed_trace PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_numeric_helpers_match_hand_computed_values PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_conversion_matches_independent_expectation XFAIL
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_loop_shapes_match_hand_computed_totals PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_enums_and_structs_match_hand_computed_values PASSED
+tests/test_expected_logic.py::TestRealMagnitudes::test_real_results_match_hand_computed_magnitudes PASSED
+tests/test_offline_differential.py::test_numeric_matrix_against_oracle_and_cpp[direct] PASSED
+tests/test_offline_differential.py::test_numeric_matrix_against_oracle_and_cpp[python-st-roundtrip] PASSED
+tests/test_offline_differential.py::test_timer_edges_reset_and_instance_isolation[direct] PASSED
+tests/test_offline_differential.py::test_timer_edges_reset_and_instance_isolation[python-st-roundtrip] PASSED
+tests/test_offline_differential.py::test_cpp_forward_function_block_dependency XFAIL
+tests/test_offline_differential.py::test_roundtrip_function_cpp_is_warning_free XFAIL
+tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[small] {"array_elements_per_program": 64, "array_width": 8, "blocks": 8, "call_depth": 4, "cpp_and_roundtrip_seconds": 0.4962, "files": 13, "pous": 13, "prepare_seconds": 0.0156, "python_and_roundtrip_seconds": 0.0519, "scans": 20}
+PASSED
+tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[medium] {"array_elements_per_program": 2048, "array_width": 32, "blocks": 64, "call_depth": 16, "cpp_and_roundtrip_seconds": 0.7561, "files": 81, "pous": 81, "prepare_seconds": 0.1347, "python_and_roundtrip_seconds": 1.5412, "scans": 40}
+PASSED
+tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[large] {"array_elements_per_program": 32768, "array_width": 128, "blocks": 256, "call_depth": 32, "cpp_and_roundtrip_seconds": 0.9551, "files": 289, "pous": 289, "prepare_seconds": 0.4484, "python_and_roundtrip_seconds": 29.6757, "scans": 64}
+PASSED
+tests/test_offline_synthetic.py::test_long_run_scan_engine_and_cpp {"soak_scans_per_variant": 100000, "simulated_seconds": 1000, "variants": 2, "wall_seconds": 3.4681}
+PASSED
+tests/test_plcopen_frontend.py::TestLadder::test_contacts_in_series_are_a_conjunction PASSED
+tests/test_plcopen_frontend.py::TestLadder::test_parallel_branches_are_a_disjunction PASSED
+tests/test_plcopen_frontend.py::TestLadder::test_set_and_reset_coils_become_conditional_assignments PASSED
+tests/test_plcopen_frontend.py::TestLadder::test_an_edge_contact_creates_an_implicit_trigger_instance PASSED
+tests/test_plcopen_frontend.py::TestLadder::test_the_worked_example_produces_a_seal_in_circuit PASSED
+tests/test_plcopen_frontend.py::TestLadder::test_the_worked_example_runs_as_python PASSED
+tests/test_plcopen_frontend.py::TestFunctionBlockDiagram::test_operator_blocks_become_expressions PASSED
+tests/test_plcopen_frontend.py::TestFunctionBlockDiagram::test_a_block_whose_outputs_nobody_reads_is_still_called PASSED
+tests/test_plcopen_frontend.py::TestFunctionBlockDiagram::test_the_worked_example_latches_and_alarms PASSED
+tests/test_plcopen_frontend.py::TestRobustness::test_malformed_xml_is_reported_not_raised PASSED
+tests/test_plcopen_frontend.py::TestRobustness::test_an_unsupported_body_language_keeps_the_interface PASSED
+tests/test_plcopen_frontend.py::TestRobustness::test_a_dangling_connection_is_reported PASSED
+tests/test_plcopen_frontend.py::TestRobustness::test_a_structured_text_body_inside_plcopen_is_parsed PASSED
+tests/test_plcopen_frontend.py::TestRobustness::test_namespace_variants_are_accepted[] PASSED
+tests/test_plcopen_frontend.py::TestRobustness::test_namespace_variants_are_accepted[ xmlns="http://www.plcopen.org/xml/tc6_0200"] PASSED
+tests/test_python_backend.py::TestSemanticsThatPythonWouldGetWrong::test_integer_division_truncates_toward_zero PASSED
+tests/test_python_backend.py::TestSemanticsThatPythonWouldGetWrong::test_modulo_follows_the_sign_of_the_dividend PASSED
+tests/test_python_backend.py::TestSemanticsThatPythonWouldGetWrong::test_for_loops_include_the_upper_bound PASSED
+tests/test_python_backend.py::TestSemanticsThatPythonWouldGetWrong::test_arrays_keep_their_declared_index_origin PASSED
+tests/test_python_backend.py::TestSemanticsThatPythonWouldGetWrong::test_negative_array_bounds PASSED
+tests/test_python_backend.py::TestSemanticsThatPythonWouldGetWrong::test_bit_strings_use_bitwise_operators PASSED
+tests/test_python_backend.py::TestSemanticsThatPythonWouldGetWrong::test_booleans_use_logical_operators PASSED
+tests/test_python_backend.py::TestStructure::test_case_becomes_a_readable_branch_chain PASSED
+tests/test_python_backend.py::TestStructure::test_repeat_until_runs_at_least_once PASSED
+tests/test_python_backend.py::TestStructure::test_enumerations_and_structures_survive PASSED
+tests/test_python_backend.py::TestStructure::test_identifiers_colliding_with_python_keywords_are_mangled PASSED
+tests/test_python_backend.py::TestStructure::test_direct_addresses_become_readable_names PASSED
+tests/test_python_backend.py::TestStructure::test_global_variables_become_one_shared_instance PASSED
+tests/test_python_backend.py::TestTiming::test_a_generated_timer_keeps_iec_timing PASSED
+tests/test_python_backend.py::TestTiming::test_output_parameters_are_read_back_after_the_call PASSED
+tests/test_python_backend.py::test_strict_integers_wraps_like_the_controller PASSED
+tests/test_python_backend.py::test_generated_module_is_valid_python_with_no_undefined_names PASSED
+tests/test_python_backend.py::TestHostileText::test_a_windows_source_path_does_not_break_the_docstring PASSED
+tests/test_python_backend.py::TestHostileText::test_a_comment_containing_a_backslash_or_quotes_is_escaped PASSED
+tests/test_python_backend.py::TestHostileText::test_a_scaffolded_package_survives_a_windows_path PASSED
+tests/test_roundtrip.py::test_structured_text_to_python_and_back PASSED
+tests/test_roundtrip.py::test_the_interface_survives_the_round_trip PASSED
+tests/test_roundtrip.py::test_structured_text_output_reparses_identically PASSED
+tests/test_roundtrip.py::test_hand_written_python_lifts_to_valid_structured_text PASSED
+tests/test_roundtrip.py::test_repeat_and_while_survive_the_round_trip PASSED
+tests/test_roundtrip.py::test_a_structured_text_comment_cannot_close_itself_early PASSED
+tests/test_runtime_blocks.py::TestTON::test_q_rises_only_after_the_full_preset PASSED
+tests/test_runtime_blocks.py::TestTON::test_elapsed_time_is_clamped_to_the_preset PASSED
+tests/test_runtime_blocks.py::TestTON::test_dropping_the_input_resets_the_timer PASSED
+tests/test_runtime_blocks.py::TestTON::test_zero_preset_is_immediate PASSED
+tests/test_runtime_blocks.py::TestTOF::test_q_follows_input_up_and_lags_down PASSED
+tests/test_runtime_blocks.py::TestTOF::test_input_returning_early_cancels_the_delay PASSED
+tests/test_runtime_blocks.py::TestTP::test_pulse_holds_for_the_preset_regardless_of_the_input PASSED
+tests/test_runtime_blocks.py::TestTP::test_retriggering_needs_a_new_rising_edge PASSED
+tests/test_runtime_blocks.py::TestCounters::test_ctu_counts_edges_not_levels PASSED
+tests/test_runtime_blocks.py::TestCounters::test_ctd_loads_and_counts_down PASSED
+tests/test_runtime_blocks.py::TestCounters::test_ctud_tracks_both_directions PASSED
+tests/test_runtime_blocks.py::TestEdgesAndBistables::test_r_trig_pulses_for_one_scan PASSED
+tests/test_runtime_blocks.py::TestEdgesAndBistables::test_f_trig_pulses_on_the_falling_edge PASSED
+tests/test_runtime_blocks.py::TestEdgesAndBistables::test_sr_is_set_dominant PASSED
+tests/test_runtime_blocks.py::TestEdgesAndBistables::test_rs_is_reset_dominant PASSED
+tests/test_runtime_blocks.py::test_instance_clock_overrides_the_ambient_one PASSED
+tests/test_runtime_blocks.py::test_reset_returns_a_block_to_its_power_on_state PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_integer_division_truncates_toward_zero[7-2-3] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_integer_division_truncates_toward_zero[-7-2--3] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_integer_division_truncates_toward_zero[7--2--3] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_integer_division_truncates_toward_zero[-7--2-3] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_modulo_follows_the_dividend[7-2-1] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_modulo_follows_the_dividend[-7-2--1] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_modulo_follows_the_dividend[7--2-1] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_modulo_follows_the_dividend[-7--2--1] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_division_by_zero_is_an_error_not_a_silent_zero PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_the_identity_dividend_equals_quotient_times_divisor_plus_remainder PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_for_loop_counting_is_inclusive[arguments0-expected0] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_for_loop_counting_is_inclusive[arguments1-expected1] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_for_loop_counting_is_inclusive[arguments2-expected2] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_for_loop_counting_is_inclusive[arguments3-expected3] PASSED
+tests/test_runtime_core.py::TestOperatorsThatDifferFromPython::test_a_zero_step_is_rejected PASSED
+tests/test_runtime_core.py::TestSelectionAndBits::test_limit_uses_the_iec_argument_order PASSED
+tests/test_runtime_core.py::TestSelectionAndBits::test_sel_and_mux PASSED
+tests/test_runtime_core.py::TestSelectionAndBits::test_abs_keeps_the_type PASSED
+tests/test_runtime_core.py::TestSelectionAndBits::test_shifts_stay_inside_the_declared_width PASSED
+tests/test_runtime_core.py::TestSelectionAndBits::test_rotations_wrap_around PASSED
+tests/test_runtime_core.py::TestStringsAreOneBased::test_left_right_and_mid PASSED
+tests/test_runtime_core.py::TestStringsAreOneBased::test_find_returns_a_one_based_position_or_zero PASSED
+tests/test_runtime_core.py::TestStringsAreOneBased::test_concat PASSED
+tests/test_runtime_core.py::TestTypes::test_duration_literals_parse[T#5s-5.0] PASSED
+tests/test_runtime_core.py::TestTypes::test_duration_literals_parse[T#1s500ms-1.5] PASSED
+tests/test_runtime_core.py::TestTypes::test_duration_literals_parse[2m30s-150.0] PASSED
+tests/test_runtime_core.py::TestTypes::test_duration_literals_parse[TIME#1h-3600.0] PASSED
+tests/test_runtime_core.py::TestTypes::test_an_unparsable_duration_is_an_error PASSED
+tests/test_runtime_core.py::TestTypes::test_durations_render_back[1.5-T#1s500ms] PASSED
+tests/test_runtime_core.py::TestTypes::test_durations_render_back[0.0-T#0ms] PASSED
+tests/test_runtime_core.py::TestTypes::test_durations_render_back[3661.0-T#1h1m1s] PASSED
+tests/test_runtime_core.py::TestTypes::test_durations_render_back[-0.25--T#250ms] PASSED
+tests/test_runtime_core.py::TestTypes::test_duration_formatting_round_trips PASSED
+tests/test_runtime_core.py::TestTypes::test_fixed_width_integers_wrap PASSED
+tests/test_runtime_core.py::TestTypes::test_conversions PASSED
+tests/test_runtime_core.py::TestArray::test_bounds_are_kept PASSED
+tests/test_runtime_core.py::TestArray::test_out_of_range_access_is_reported PASSED
+tests/test_runtime_core.py::TestArray::test_multiple_dimensions_are_row_major PASSED
+tests/test_runtime_core.py::TestArray::test_an_empty_range_is_rejected PASSED
+tests/test_runtime_core.py::TestArray::test_a_factory_fill_gives_each_element_its_own_object PASSED
+tests/test_runtime_core.py::TestArray::test_filled_writes_in_declaration_order PASSED
+tests/test_runtime_core.py::TestClock::test_a_simulated_clock_only_moves_when_told PASSED
+tests/test_runtime_core.py::TestClock::test_the_ambient_clock_is_restored_after_the_context PASSED
+tests/test_runtime_core.py::TestClock::test_a_monotonic_clock_never_goes_backwards PASSED
+tests/test_runtime_core.py::TestScanEngine::test_run_cycles_advances_a_simulated_clock_one_cycle_per_scan PASSED
+tests/test_runtime_core.py::TestScanEngine::test_run_for_converts_a_duration_into_scans PASSED
+tests/test_runtime_core.py::TestScanEngine::test_io_hooks_run_around_the_program PASSED
+tests/test_runtime_core.py::TestScanEngine::test_statistics_are_reported PASSED
+tests/test_runtime_core.py::TestScanEngine::test_a_non_positive_cycle_time_is_rejected PASSED
+tests/test_runtime_core.py::TestScanEngine::test_program_variables_are_readable PASSED
+tests/test_runtime_core.py::test_struct_helpers PASSED
+tests/test_semantics.py::TestTypeResolution::test_expressions_are_annotated_with_their_type PASSED
+tests/test_semantics.py::TestTypeResolution::test_function_block_outputs_resolve_through_the_standard_library PASSED
+tests/test_semantics.py::TestTypeResolution::test_user_function_block_outputs_resolve_too PASSED
+tests/test_semantics.py::TestTypeResolution::test_array_element_types_resolve PASSED
+tests/test_semantics.py::TestTypeResolution::test_conversion_functions_report_their_target PASSED
+tests/test_semantics.py::TestTypeResolution::test_mixed_arithmetic_widens_and_warns PASSED
+tests/test_semantics.py::TestTypeResolution::test_incompatible_types_are_warned_about PASSED
+tests/test_semantics.py::TestLinking::test_user_types_declared_in_another_file_still_resolve PASSED
+tests/test_semantics.py::TestLinking::test_an_unknown_type_is_reported_once PASSED
+tests/test_semantics.py::TestLinking::test_an_unknown_member_is_reported PASSED
+tests/test_semantics.py::TestLinking::test_an_unknown_block_parameter_is_reported PASSED
+tests/test_semantics.py::TestLinking::test_a_duplicate_declaration_is_reported PASSED
+tests/test_semantics.py::TestLinking::test_case_insensitive_shadowing_of_an_enumeration_is_reported PASSED
+tests/test_semantics.py::TestDiagnostics::test_severity_ranking PASSED
+tests/test_semantics.py::TestDiagnostics::test_formatting_includes_location_code_and_hint PASSED
+tests/test_semantics.py::TestDiagnostics::test_summary_counts PASSED
+tests/test_semantics.py::TestDiagnostics::test_raise_if_errors_carries_the_diagnostics PASSED
+tests/test_semantics.py::TestDiagnostics::test_no_errors_means_no_raise PASSED
+tests/test_semantics.py::TestTypeAlgebra::test_common_type_widens PASSED
+tests/test_semantics.py::TestTypeAlgebra::test_unrelated_types_have_no_common_type PASSED
+tests/test_semantics.py::TestTypeAlgebra::test_a_missing_operand_type_does_not_hide_the_other PASSED
+tests/test_semantics.py::TestTypeAlgebra::test_group_predicates PASSED
+tests/test_semantics.py::test_resolving_an_empty_project_is_harmless PASSED
+tests/test_st_frontend.py::TestLexer::test_duration_literals[T#5s-5.0] PASSED
+tests/test_st_frontend.py::TestLexer::test_duration_literals[T#1s500ms-1.5] PASSED
+tests/test_st_frontend.py::TestLexer::test_duration_literals[T#1h30m-5400.0] PASSED
+tests/test_st_frontend.py::TestLexer::test_duration_literals[TIME#2d-172800.0] PASSED
+tests/test_st_frontend.py::TestLexer::test_duration_literals[T#-250ms--0.25] PASSED
+tests/test_st_frontend.py::TestLexer::test_duration_literals[t#100ms-0.1] PASSED
+tests/test_st_frontend.py::TestLexer::test_based_and_typed_integers[16#FF-255] PASSED
+tests/test_st_frontend.py::TestLexer::test_based_and_typed_integers[2#1010_1010-170] PASSED
+tests/test_st_frontend.py::TestLexer::test_based_and_typed_integers[8#17-15] PASSED
+tests/test_st_frontend.py::TestLexer::test_based_and_typed_integers[1_000-1000] PASSED
+tests/test_st_frontend.py::TestLexer::test_based_and_typed_integers[INT#42-42] PASSED
+tests/test_st_frontend.py::TestLexer::test_nested_block_comments_are_one_token PASSED
+tests/test_st_frontend.py::TestLexer::test_string_escapes_are_decoded PASSED
+tests/test_st_frontend.py::TestLexer::test_direct_addresses_are_recognised PASSED
+tests/test_st_frontend.py::TestLexer::test_an_unterminated_comment_is_reported_not_raised PASSED
+tests/test_st_frontend.py::TestParser::test_pou_kinds_and_variable_sections PASSED
+tests/test_st_frontend.py::TestParser::test_operator_precedence_follows_iec PASSED
+tests/test_st_frontend.py::TestParser::test_power_is_right_associative PASSED
+tests/test_st_frontend.py::TestParser::test_case_with_ranges_and_multiple_labels PASSED
+tests/test_st_frontend.py::TestParser::test_loops_and_jumps PASSED
+tests/test_st_frontend.py::TestParser::test_function_block_call_with_named_and_output_parameters PASSED
+tests/test_st_frontend.py::TestParser::test_comments_are_carried_into_the_ir PASSED
+tests/test_st_frontend.py::TestParser::test_arrays_structures_and_enumerations PASSED
+tests/test_st_frontend.py::TestParser::test_a_broken_statement_does_not_lose_the_rest_of_the_file PASSED
+tests/test_st_frontend.py::TestParser::test_vendor_inheritance_keywords_are_reported_not_fatal PASSED
+tests/test_st_frontend.py::TestParser::test_pragmas_are_skipped PASSED
+tests/test_st_frontend.py::test_utf8_bom_and_crlf_are_handled PASSED
+tests/test_st_frontend.py::test_parse_source_accepts_a_bare_string PASSED
+
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.13.12-final-0 _______________
+
+Name                                         Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------------------------
+src/plcforge/__init__.py                         4      0      0      0   100%
+src/plcforge/__main__.py                         3      3      2      0     0%   3-6
+src/plcforge/backends/__init__.py                0      0      0      0   100%
+src/plcforge/backends/cpp/__init__.py            0      0      0      0   100%
+src/plcforge/backends/cpp/emitter.py           495     82    262     46    80%   145-146, 161->170, 187-188, 208, 218, 230-242, 270, 308->310, 311->313, 331, 347, 358, 365->367, 374, 404-405, 411-427, 441, 451-456, 458-459, 464-465, 470-474, 480->483, 487, 514-515, 516->518, 525, 542, 547->549, 560, 594-599, 618-620, 633, 636->631, 638, 655-658, 660-663, 667, 669->673, 678, 682->688, 693, 695, 697, 703-704, 715, 727, 729
+src/plcforge/backends/naming.py                 54      1     18      1    97%   100
+src/plcforge/backends/python/__init__.py         0      0      0      0   100%
+src/plcforge/backends/python/emitter.py        712     94    330     55    83%   202->204, 205->207, 213, 234->241, 253, 272, 289, 372, 384, 439, 455->458, 458->461, 463->465, 497-498, 511-519, 571, 573, 637-644, 663-666, 668, 684, 686, 689-691, 697-698, 719, 740-742, 749-751, 768, 771->766, 773, 776-783, 788-790, 799->802, 806-807, 819, 827-833, 839->842, 846, 872-875, 877, 879-880, 882-883, 885-886, 888, 890, 902-903, 911, 925, 931, 945, 953, 962, 978-983, 988-990, 998, 1009, 1015, 1069
+src/plcforge/backends/python/project.py         88      5     18      7    89%   56, 68->72, 72->76, 84, 96, 129, 224
+src/plcforge/backends/st/__init__.py             0      0      0      0   100%
+src/plcforge/backends/st/emitter.py            214     28    100     15    84%   108->111, 116, 152->151, 163, 165, 184, 189, 208, 220-221, 229-230, 249-254, 276, 304-311, 324-327, 336, 338, 355
+src/plcforge/cli.py                            165      9     52      8    92%   209-210, 215, 234, 248, 319, 321, 323, 348
+src/plcforge/diagnostics.py                     92      9     18      1    87%   44-45, 97, 119-123, 141
+src/plcforge/frontends/__init__.py               0      0      0      0   100%
+src/plcforge/frontends/plcopen/__init__.py       0      0      0      0   100%
+src/plcforge/frontends/plcopen/reader.py       412     84    192     45    74%   147, 152->150, 159-161, 165-178, 183-192, 201-202, 212->233, 216-217, 220, 228->226, 230->213, 235-240, 252->242, 262, 274, 296-302, 304-305, 307, 309, 316, 320-324, 334->332, 365, 391, 397-400, 403-409, 417-420, 426, 441-446, 458, 478, 489, 525->527, 545, 561, 564, 568, 573-578, 631, 646, 651, 653, 668, 686, 698, 721-731, 738->741
+src/plcforge/frontends/python/__init__.py        0      0      0      0   100%
+src/plcforge/frontends/python/lifter.py        532    106    330     60    76%   121-129, 146->141, 213-215, 219-225, 252-259, 279, 286, 299->296, 316, 318, 347, 351, 367->369, 385, 407, 422, 431->434, 450->452, 458, 473-475, 511-513, 517, 520-529, 535, 538->543, 540->539, 545, 553, 557, 560-574, 579, 582-586, 596, 614, 616, 619-620, 628, 641-642, 656, 661, 663-668, 674, 682, 684, 697-700, 713, 721->732, 736, 740, 743-744, 754, 788, 798, 808, 830-836, 840, 851-853, 861, 873, 899, 907, 915
+src/plcforge/frontends/st/__init__.py            0      0      0      0   100%
+src/plcforge/frontends/st/lexer.py             241     31     84     12    84%   121, 156, 161-166, 221-224, 227->229, 243-245, 287-294, 302-305, 359, 361-375, 380->397, 388-395, 398->400
+src/plcforge/frontends/st/parser.py            657    101    254     44    81%   131-132, 162, 189->191, 219-220, 225-227, 235-236, 252->exit, 257-263, 278-287, 291-295, 312-314, 338->355, 345, 358, 370, 372, 378-379, 396, 437-438, 444->448, 463-475, 490, 522, 548->536, 572-574, 576-578, 582->589, 587, 601-603, 607-611, 627, 678, 680-684, 689->704, 695-696, 699-701, 702->689, 714, 720->722, 726, 801-802, 823, 862-863, 865-866, 873, 895-903, 910, 925-931, 966-967
+src/plcforge/ir/__init__.py                      4      0      0      0   100%
+src/plcforge/ir/link.py                         48      2     26      1    96%   25, 87
+src/plcforge/ir/nodes.py                       237     24     36      0    85%   70, 284, 298, 351, 355, 404-422
+src/plcforge/ir/stdlib.py                       83     10     32      5    83%   55, 207, 227->226, 229-230, 241-245, 250
+src/plcforge/ir/types.py                        81      5     10      2    92%   74, 211-212, 215, 217
+src/plcforge/ir/validate.py                    215     18    132     15    90%   168, 188, 198, 211, 230-235, 241-246, 276, 284-285, 299-308, 317->319, 320, 333, 345
+src/plcforge/pipeline.py                        97     14     34      5    82%   56, 60-67, 88, 100, 106-112, 125->124, 192
+src/plcforge/runtime/__init__.py                 7      0      0      0   100%
+src/plcforge/runtime/blocks.py                 284     32     82     14    87%   56-57, 93->95, 130->132, 151-153, 172->174, 187-188, 193-196, 240-242, 281-283, 329, 331, 337, 339, 352-356, 377->379, 384-385, 401->403, 408-409, 425->427, 427->429, 433, 449->451, 451->453, 457
+src/plcforge/runtime/clock.py                   52      6     10      2    81%   86-90, 94, 120, 121->exit
+src/plcforge/runtime/functions.py              142     34     24      4    76%   124, 128, 132, 136, 140, 144, 148, 152, 156, 160, 164, 168, 188, 264-265, 269-270, 274-275, 293, 304, 306, 311, 318-328, 337, 343
+src/plcforge/runtime/scan.py                   107     24     32      4    73%   40-41, 54->50, 77, 89, 157->155, 173-188, 192, 195-202
+src/plcforge/runtime/types.py                  143     13     46      1    89%   128, 200, 235, 238-242, 249-251, 254-255
+src/plcforge/templates/__init__.py               0      0      0      0   100%
+----------------------------------------------------------------------------------------
+TOTAL                                         5169    735   2124    347    82%
+=========================== short test summary info ============================
+XFAIL tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_conversion_matches_independent_expectation - OFFLINE-001: convert(value, DINT) lifts to undefined TO_DINT; see offline-expanded.md
+XFAIL tests/test_offline_differential.py::test_cpp_forward_function_block_dependency - OFFLINE-002: C++ emits dependent FB before its definition; see offline-expanded.md
+XFAIL tests/test_offline_differential.py::test_roundtrip_function_cpp_is_warning_free - OFFLINE-003: function roundtrip emits self-assignment under -Werror; see offline-expanded.md
+======================= 225 passed, 3 xfailed in 45.59s ========================

@@ -1,0 +1,170 @@
+FFFF....x
+=================================== FAILURES ===================================
+_____________ test_multifile_project_scales_and_matches_cpp[small] _____________
+tests/test_offline_synthetic.py:132: in test_multifile_project_scales_and_matches_cpp
+    )
+      
+tests/offline_support.py:65: in cpp_output
+    timeout=120,
+E   offline_support.CompilationError: In file included from main.cpp:2:
+E   ./offline.hpp:18:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      18 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:28:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      28 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:38:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      38 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:48:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      48 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   4 errors generated.
+____________ test_multifile_project_scales_and_matches_cpp[medium] _____________
+tests/test_offline_synthetic.py:132: in test_multifile_project_scales_and_matches_cpp
+    )
+      
+tests/offline_support.py:65: in cpp_output
+    timeout=120,
+E   offline_support.CompilationError: In file included from main.cpp:2:
+E   ./offline.hpp:18:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      18 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:28:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      28 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:38:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      38 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:48:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      48 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:58:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      58 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:68:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      68 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:78:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      78 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:88:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      88 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:98:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      98 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:108:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     108 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:118:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     118 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:128:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     128 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:138:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     138 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:148:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     148 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:158:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     158 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:168:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     168 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   16 errors generated.
+_____________ test_multifile_project_scales_and_matches_cpp[large] _____________
+tests/test_offline_synthetic.py:132: in test_multifile_project_scales_and_matches_cpp
+    )
+      
+tests/offline_support.py:65: in cpp_output
+    timeout=120,
+E   offline_support.CompilationError: In file included from main.cpp:2:
+E   ./offline.hpp:18:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      18 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:28:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      28 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:38:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      38 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:48:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      48 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:58:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      58 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:68:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      68 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:78:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      78 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:88:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      88 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:98:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      98 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:108:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     108 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:118:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     118 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:128:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     128 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:138:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     138 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:148:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     148 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:158:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     158 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:168:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     168 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:178:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     178 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:188:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     188 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:198:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E     198 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   fatal error: too many errors emitted, stopping now [-ferror-limit=]
+E   20 errors generated.
+______________________ test_long_run_scan_engine_and_cpp _______________________
+tests/test_offline_synthetic.py:176: in test_long_run_scan_engine_and_cpp
+    ???
+tests/offline_support.py:65: in cpp_output
+    timeout=120,
+E   offline_support.CompilationError: In file included from main.cpp:2:
+E   ./offline.hpp:18:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      18 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:28:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      28 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:38:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      38 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   ./offline.hpp:48:13: error: explicitly assigning value of variable of type 'plcforge::DINT' (aka 'int') to itself [-Werror,-Wself-assign]
+E      48 |     _result = _result;
+E         |     ~~~~~~~ ^ ~~~~~~~
+E   4 errors generated.
+=========================== short test summary info ============================
+XFAIL tests/test_offline_differential.py::test_cpp_forward_function_block_dependency - OFFLINE-002: C++ emits dependent FB before its definition; see offline-expanded.md
+FAILED tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[small]
+FAILED tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[medium]
+FAILED tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[large]
+FAILED tests/test_offline_synthetic.py::test_long_run_scan_engine_and_cpp - o...
+4 failed, 4 passed, 1 xfailed in 42.04s

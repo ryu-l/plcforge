@@ -1,0 +1,58 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.12, pytest-9.2.0, pluggy-1.7.0 -- /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/mac/.tds/workspaces/01a18317-b201-7401-9330-9230e8e26445
+configfile: pyproject.toml
+plugins: cov-7.1.0
+collecting ... collected 19 items
+
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%IX0.0-input_x0_0] PASSED [  5%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%QW2.3-output_w2_3] PASSED [ 10%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%MD5-memory_d5] PASSED [ 15%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%ix0.0-input_x0_0] PASSED [ 21%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[Motor Start-Motor_Start] PASSED [ 26%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[9volts-_9volts] PASSED [ 31%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[already_fine-already_fine] PASSED [ 36%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_python_keywords_gain_an_underscore_and_others_do_not PASSED [ 42%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_cpp_keywords_gain_an_underscore_and_others_do_not PASSED [ 47%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_class_names_keep_the_authors_spelling PASSED [ 52%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_module_names_are_snake_case PASSED [ 57%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_collisions_are_numbered_from_two_without_disturbing_new_names PASSED [ 63%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_identifiers_hostile_to_both_targets_still_run FAILED [ 68%]
+tests/test_expected_logic.py::TestIdentifierMapping::test_direct_addresses_lift_into_readable_python_names FAILED [ 73%]
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_a_lifted_tank_matches_its_hand_computed_trace PASSED [ 78%]
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_numeric_helpers_match_hand_computed_values FAILED [ 84%]
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_loop_shapes_match_hand_computed_totals FAILED [ 89%]
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_enums_and_structs_match_hand_computed_values PASSED [ 94%]
+tests/test_expected_logic.py::TestRealMagnitudes::test_real_results_match_hand_computed_magnitudes PASSED [100%]
+
+=================================== FAILURES ===================================
+___ TestIdentifierMapping.test_identifiers_hostile_to_both_targets_still_run ___
+tests/test_expected_logic.py:135: in test_identifiers_hostile_to_both_targets_still_run
+    assert module.Valve()(class_=5, template_=True).namespace == 5
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: Valve.__call__() got an unexpected keyword argument 'template_'. Did you mean 'template'?
+_ TestIdentifierMapping.test_direct_addresses_lift_into_readable_python_names __
+tests/test_expected_logic.py:150: in test_direct_addresses_lift_into_readable_python_names
+    assert module.Io()(input_x0_0=True).output_x0_0 is True
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: Io.__call__() got an unexpected keyword argument 'input_x0_0'
+_ TestLiftedHandWrittenPython.test_lifted_numeric_helpers_match_hand_computed_values _
+tests/test_expected_logic.py:267: in test_lifted_numeric_helpers_match_hand_computed_values
+    assert module.narrowed(2.9) == 2
+           ^^^^^^^^^^^^^^^^^^^^
+<generated:expected_numerics>:67: in narrowed
+    ???
+E   NameError: name 'TO_DINT' is not defined
+_ TestLiftedHandWrittenPython.test_lifted_loop_shapes_match_hand_computed_totals _
+tests/test_expected_logic.py:309: in test_lifted_loop_shapes_match_hand_computed_totals
+    assert module.halving_steps(8) == 3
+E   AssertionError: assert 4 == 3
+E    +  where 4 = <function halving_steps at 0x106dc5ee0>(8)
+E    +    where <function halving_steps at 0x106dc5ee0> = <module 'expected_loops'>.halving_steps
+=========================== short test summary info ============================
+FAILED tests/test_expected_logic.py::TestIdentifierMapping::test_identifiers_hostile_to_both_targets_still_run
+FAILED tests/test_expected_logic.py::TestIdentifierMapping::test_direct_addresses_lift_into_readable_python_names
+FAILED tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_numeric_helpers_match_hand_computed_values
+FAILED tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_loop_shapes_match_hand_computed_totals
+========================= 4 failed, 15 passed in 0.06s =========================

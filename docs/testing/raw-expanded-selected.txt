@@ -1,0 +1,48 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.12, pytest-9.2.0, pluggy-1.7.0 -- /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/mac/.tds/workspaces/01a18317-b201-7401-9330-9230e8e26445
+configfile: pyproject.toml
+plugins: cov-7.1.0
+collecting ... collected 30 items
+
+tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[small] {"array_elements_per_program": 64, "array_width": 8, "blocks": 8, "call_depth": 4, "cpp_seconds": 0.5196, "files": 13, "pous": 13, "prepare_seconds": 0.0044, "python_and_roundtrip_seconds": 0.0207, "scans": 20}
+PASSED
+tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[medium] {"array_elements_per_program": 2048, "array_width": 32, "blocks": 64, "call_depth": 16, "cpp_seconds": 0.7778, "files": 81, "pous": 81, "prepare_seconds": 0.0495, "python_and_roundtrip_seconds": 0.8049, "scans": 40}
+PASSED
+tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[large] {"array_elements_per_program": 32768, "array_width": 128, "blocks": 256, "call_depth": 32, "cpp_seconds": 0.8063, "files": 289, "pous": 289, "prepare_seconds": 0.1251, "python_and_roundtrip_seconds": 17.0086, "scans": 64}
+PASSED
+tests/test_offline_synthetic.py::test_long_run_scan_engine_and_cpp {"soak_scans_per_variant": 100000, "simulated_seconds": 1000, "python_variants": 2, "cpp_variants": 1, "wall_seconds": 1.4961}
+PASSED
+tests/test_offline_differential.py::test_numeric_matrix_against_oracle_and_cpp[direct] PASSED
+tests/test_offline_differential.py::test_numeric_matrix_against_oracle_and_cpp[python-st-roundtrip] PASSED
+tests/test_offline_differential.py::test_timer_edges_reset_and_instance_isolation[direct] PASSED
+tests/test_offline_differential.py::test_timer_edges_reset_and_instance_isolation[python-st-roundtrip] PASSED
+tests/test_offline_differential.py::test_cpp_forward_function_block_dependency XFAIL
+tests/test_offline_differential.py::test_roundtrip_function_cpp_is_warning_free XFAIL
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%IX0.0-input_x0_0] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%QW2.3-output_w2_3] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%MD5-memory_d5] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[%ix0.0-input_x0_0] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[Motor Start-Motor_Start] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[9volts-_9volts] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_plc_identifiers_get_predicted_target_spellings[already_fine-already_fine] PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_python_keywords_gain_an_underscore_and_others_do_not PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_cpp_keywords_gain_an_underscore_and_others_do_not PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_class_names_keep_the_authors_spelling PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_module_names_are_snake_case PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_collisions_are_numbered_from_two_without_disturbing_new_names PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_identifiers_hostile_to_both_targets_still_run PASSED
+tests/test_expected_logic.py::TestIdentifierMapping::test_named_variables_keep_names_and_addresses_are_metadata PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_a_lifted_tank_matches_its_hand_computed_trace PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_numeric_helpers_match_hand_computed_values PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_conversion_matches_independent_expectation XFAIL
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_loop_shapes_match_hand_computed_totals PASSED
+tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_enums_and_structs_match_hand_computed_values PASSED
+tests/test_expected_logic.py::TestRealMagnitudes::test_real_results_match_hand_computed_magnitudes PASSED
+
+=========================== short test summary info ============================
+XFAIL tests/test_offline_differential.py::test_cpp_forward_function_block_dependency - OFFLINE-002: C++ emits dependent FB before its definition; see offline-expanded.md
+XFAIL tests/test_offline_differential.py::test_roundtrip_function_cpp_is_warning_free - OFFLINE-003: function roundtrip emits self-assignment under -Werror; see offline-expanded.md
+XFAIL tests/test_expected_logic.py::TestLiftedHandWrittenPython::test_lifted_conversion_matches_independent_expectation - OFFLINE-001: convert(value, DINT) lifts to undefined TO_DINT; see offline-expanded.md
+======================== 27 passed, 3 xfailed in 24.97s ========================
