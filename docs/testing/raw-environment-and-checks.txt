@@ -1,0 +1,49 @@
+platform=macOS-26.4-arm64-arm-64bit-Mach-O
+executable=/private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python
+
+$ /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python --version
+Python 3.13.12
+exit_code=0
+
+$ /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python -m pip list
+Package           Version Editable project location
+----------------- ------- ---------------------------------------------------------------
+ast_serialize     0.13.1
+coverage          7.17.0
+iniconfig         2.3.1
+librt             0.16.0
+mypy              2.4.0
+mypy_extensions   1.1.0
+packaging         26.3
+pathspec          1.1.1
+pip               26.2.2
+plcforge          0.4.0   /Users/mac/.tds/workspaces/01a18317-b201-7401-9330-9230e8e26445
+pluggy            1.7.0
+Pygments          2.21.0
+pytest            9.2.0
+pytest-cov        7.1.0
+ruff              0.17.3
+typing_extensions 4.16.0
+exit_code=0
+
+$ c++ --version
+Apple clang version 21.0.0 (clang-2100.3.25.1)
+Target: arm64-apple-darwin25.4.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+exit_code=0
+
+$ git rev-parse HEAD
+c120ae584aedcc699fddc72947de250b335afc3c
+exit_code=0
+
+$ git diff 56ac0e5 -- src
+exit_code=0
+
+$ /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python -m ruff check .
+All checks passed!
+exit_code=0
+
+$ /private/var/folders/cf/32pq1lwd4wz81yhlnkptp4kw0000gn/T/opencode/plcforge-ext-venv/bin/python -m mypy
+Success: no issues found in 35 source files
+exit_code=0

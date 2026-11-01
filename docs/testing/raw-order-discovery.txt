@@ -1,0 +1,246 @@
+FFFF....
+=================================== FAILURES ===================================
+_____________ test_multifile_project_scales_and_matches_cpp[small] _____________
+tests/test_offline_synthetic.py:132: in test_multifile_project_scales_and_matches_cpp
+    output = cpp_output(candidate, cpp_main(scans), directory)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/offline_support.py:60: in cpp_output
+    assert result.returncode == 0, result.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: In file included from main.cpp:2:
+E   ./offline.hpp:22:5: error: unknown type name 'Cell0'
+E      22 |     Cell0 cell0;
+E         |     ^
+E   ./offline.hpp:23:5: error: unknown type name 'Cell1'
+E      23 |     Cell1 cell1;
+E         |     ^
+E   ./offline.hpp:24:5: error: unknown type name 'Cell2'
+E      24 |     Cell2 cell2;
+E         |     ^
+E   ./offline.hpp:25:5: error: unknown type name 'Cell3'
+E      25 |     Cell3 cell3;
+E         |     ^
+E   ./offline.hpp:26:5: error: unknown type name 'Cell4'
+E      26 |     Cell4 cell4;
+E         |     ^
+E   ./offline.hpp:27:5: error: unknown type name 'Cell5'
+E      27 |     Cell5 cell5;
+E         |     ^
+E   ./offline.hpp:28:5: error: unknown type name 'Cell6'
+E      28 |     Cell6 cell6;
+E         |     ^
+E   ./offline.hpp:29:5: error: unknown type name 'Cell7'
+E      29 |     Cell7 cell7;
+E         |     ^
+E   ./offline.hpp:92:29: error: use of undeclared identifier 'Chain3'
+E      92 |             total = total + Chain3(8);
+E         |                             ^~~~~~
+E   ./offline.hpp:126:29: error: use of undeclared identifier 'Chain3'
+E     126 |             total = total + Chain3(7);
+E         |                             ^~~~~~
+E   ./offline.hpp:160:29: error: use of undeclared identifier 'Chain3'
+E     160 |             total = total + Chain3(6);
+E         |                             ^~~~~~
+E   ./offline.hpp:194:29: error: use of undeclared identifier 'Chain3'
+E     194 |             total = total + Chain3(5);
+E         |                             ^~~~~~
+E   ./offline.hpp:228:29: error: use of undeclared identifier 'Chain3'
+E     228 |             total = total + Chain3(4);
+E         |                             ^~~~~~
+E   ./offline.hpp:262:29: error: use of undeclared identifier 'Chain3'
+E     262 |             total = total + Chain3(3);
+E         |                             ^~~~~~
+E   ./offline.hpp:296:29: error: use of undeclared identifier 'Chain3'
+E     296 |             total = total + Chain3(2);
+E         |                             ^~~~~~
+E   ./offline.hpp:330:29: error: use of undeclared identifier 'Chain3'
+E     330 |             total = total + Chain3(1);
+E         |                             ^~~~~~
+E   ./offline.hpp:346:15: error: use of undeclared identifier 'Chain2'; did you mean 'Chain3'?
+E     346 |     _result = Chain2(value) + 1;
+E         |               ^~~~~~
+E         |               Chain3
+E   ./offline.hpp:344:23: note: 'Chain3' declared here
+E     344 | inline plcforge::DINT Chain3(plcforge::DINT value) {
+E         |                       ^
+E   ./offline.hpp:355:15: error: use of undeclared identifier 'Chain1'
+E     355 |     _result = Chain1(value) + 1;
+E         |               ^~~~~~
+E   ./offline.hpp:364:15: error: use of undeclared identifier 'Chain0'
+E     364 |     _result = Chain0(value) + 1;
+E         |               ^~~~~~
+E   19 errors generated.
+____________ test_multifile_project_scales_and_matches_cpp[medium] _____________
+tests/test_offline_synthetic.py:132: in test_multifile_project_scales_and_matches_cpp
+    output = cpp_output(candidate, cpp_main(scans), directory)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/offline_support.py:60: in cpp_output
+    assert result.returncode == 0, result.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: In file included from main.cpp:2:
+E   ./offline.hpp:22:5: error: unknown type name 'Cell0'
+E      22 |     Cell0 cell0;
+E         |     ^
+E   ./offline.hpp:23:5: error: unknown type name 'Cell1'
+E      23 |     Cell1 cell1;
+E         |     ^
+E   ./offline.hpp:24:5: error: unknown type name 'Cell2'
+E      24 |     Cell2 cell2;
+E         |     ^
+E   ./offline.hpp:25:5: error: unknown type name 'Cell3'
+E      25 |     Cell3 cell3;
+E         |     ^
+E   ./offline.hpp:26:5: error: unknown type name 'Cell4'
+E      26 |     Cell4 cell4;
+E         |     ^
+E   ./offline.hpp:27:5: error: unknown type name 'Cell5'
+E      27 |     Cell5 cell5;
+E         |     ^
+E   ./offline.hpp:28:5: error: unknown type name 'Cell6'
+E      28 |     Cell6 cell6;
+E         |     ^
+E   ./offline.hpp:29:5: error: unknown type name 'Cell7'
+E      29 |     Cell7 cell7;
+E         |     ^
+E   ./offline.hpp:30:5: error: unknown type name 'Cell8'
+E      30 |     Cell8 cell8;
+E         |     ^
+E   ./offline.hpp:31:5: error: unknown type name 'Cell9'
+E      31 |     Cell9 cell9;
+E         |     ^
+E   ./offline.hpp:32:5: error: unknown type name 'Cell10'
+E      32 |     Cell10 cell10;
+E         |     ^
+E   ./offline.hpp:33:5: error: unknown type name 'Cell11'
+E      33 |     Cell11 cell11;
+E         |     ^
+E   ./offline.hpp:34:5: error: unknown type name 'Cell12'
+E      34 |     Cell12 cell12;
+E         |     ^
+E   ./offline.hpp:35:5: error: unknown type name 'Cell13'
+E      35 |     Cell13 cell13;
+E         |     ^
+E   ./offline.hpp:36:5: error: unknown type name 'Cell14'
+E      36 |     Cell14 cell14;
+E         |     ^
+E   ./offline.hpp:37:5: error: unknown type name 'Cell15'
+E      37 |     Cell15 cell15;
+E         |     ^
+E   ./offline.hpp:38:5: error: unknown type name 'Cell16'
+E      38 |     Cell16 cell16;
+E         |     ^
+E   ./offline.hpp:39:5: error: unknown type name 'Cell17'
+E      39 |     Cell17 cell17;
+E         |     ^
+E   ./offline.hpp:40:5: error: unknown type name 'Cell18'
+E      40 |     Cell18 cell18;
+E         |     ^
+E   fatal error: too many errors emitted, stopping now [-ferror-limit=]
+E   20 errors generated.
+_____________ test_multifile_project_scales_and_matches_cpp[large] _____________
+tests/test_offline_synthetic.py:132: in test_multifile_project_scales_and_matches_cpp
+    output = cpp_output(candidate, cpp_main(scans), directory)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/offline_support.py:60: in cpp_output
+    assert result.returncode == 0, result.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: In file included from main.cpp:2:
+E   ./offline.hpp:22:5: error: unknown type name 'Cell0'
+E      22 |     Cell0 cell0;
+E         |     ^
+E   ./offline.hpp:23:5: error: unknown type name 'Cell1'
+E      23 |     Cell1 cell1;
+E         |     ^
+E   ./offline.hpp:24:5: error: unknown type name 'Cell2'
+E      24 |     Cell2 cell2;
+E         |     ^
+E   ./offline.hpp:25:5: error: unknown type name 'Cell3'
+E      25 |     Cell3 cell3;
+E         |     ^
+E   ./offline.hpp:26:5: error: unknown type name 'Cell4'
+E      26 |     Cell4 cell4;
+E         |     ^
+E   ./offline.hpp:27:5: error: unknown type name 'Cell5'
+E      27 |     Cell5 cell5;
+E         |     ^
+E   ./offline.hpp:28:5: error: unknown type name 'Cell6'
+E      28 |     Cell6 cell6;
+E         |     ^
+E   ./offline.hpp:29:5: error: unknown type name 'Cell7'
+E      29 |     Cell7 cell7;
+E         |     ^
+E   ./offline.hpp:30:5: error: unknown type name 'Cell8'
+E      30 |     Cell8 cell8;
+E         |     ^
+E   ./offline.hpp:31:5: error: unknown type name 'Cell9'
+E      31 |     Cell9 cell9;
+E         |     ^
+E   ./offline.hpp:32:5: error: unknown type name 'Cell10'
+E      32 |     Cell10 cell10;
+E         |     ^
+E   ./offline.hpp:33:5: error: unknown type name 'Cell11'
+E      33 |     Cell11 cell11;
+E         |     ^
+E   ./offline.hpp:34:5: error: unknown type name 'Cell12'
+E      34 |     Cell12 cell12;
+E         |     ^
+E   ./offline.hpp:35:5: error: unknown type name 'Cell13'
+E      35 |     Cell13 cell13;
+E         |     ^
+E   ./offline.hpp:36:5: error: unknown type name 'Cell14'
+E      36 |     Cell14 cell14;
+E         |     ^
+E   ./offline.hpp:37:5: error: unknown type name 'Cell15'
+E      37 |     Cell15 cell15;
+E         |     ^
+E   ./offline.hpp:38:5: error: unknown type name 'Cell16'
+E      38 |     Cell16 cell16;
+E         |     ^
+E   ./offline.hpp:39:5: error: unknown type name 'Cell17'
+E      39 |     Cell17 cell17;
+E         |     ^
+E   ./offline.hpp:40:5: error: unknown type name 'Cell18'
+E      40 |     Cell18 cell18;
+E         |     ^
+E   fatal error: too many errors emitted, stopping now [-ferror-limit=]
+E   20 errors generated.
+______________________ test_long_run_scan_engine_and_cpp _______________________
+tests/test_offline_synthetic.py:176: in test_long_run_scan_engine_and_cpp
+    output = cpp_output(candidate, cpp_main(scans), directory)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/offline_support.py:60: in cpp_output
+    assert result.returncode == 0, result.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: In file included from main.cpp:2:
+E   ./offline.hpp:22:5: error: unknown type name 'Cell0'
+E      22 |     Cell0 cell0;
+E         |     ^
+E   ./offline.hpp:23:5: error: unknown type name 'Cell1'
+E      23 |     Cell1 cell1;
+E         |     ^
+E   ./offline.hpp:62:29: error: use of undeclared identifier 'Chain3'
+E      62 |             total = total + Chain3(2);
+E         |                             ^~~~~~
+E   ./offline.hpp:96:29: error: use of undeclared identifier 'Chain3'
+E      96 |             total = total + Chain3(1);
+E         |                             ^~~~~~
+E   ./offline.hpp:112:15: error: use of undeclared identifier 'Chain2'; did you mean 'Chain3'?
+E     112 |     _result = Chain2(value) + 1;
+E         |               ^~~~~~
+E         |               Chain3
+E   ./offline.hpp:110:23: note: 'Chain3' declared here
+E     110 | inline plcforge::DINT Chain3(plcforge::DINT value) {
+E         |                       ^
+E   ./offline.hpp:121:15: error: use of undeclared identifier 'Chain1'
+E     121 |     _result = Chain1(value) + 1;
+E         |               ^~~~~~
+E   ./offline.hpp:130:15: error: use of undeclared identifier 'Chain0'
+E     130 |     _result = Chain0(value) + 1;
+E         |               ^~~~~~
+E   7 errors generated.
+=========================== short test summary info ============================
+FAILED tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[small]
+FAILED tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[medium]
+FAILED tests/test_offline_synthetic.py::test_multifile_project_scales_and_matches_cpp[large]
+FAILED tests/test_offline_synthetic.py::test_long_run_scan_engine_and_cpp - A...
+4 failed, 4 passed in 37.82s
