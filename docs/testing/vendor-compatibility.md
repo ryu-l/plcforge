@@ -15,7 +15,7 @@
 | 厂商 | 原生工程/归档的当前结论 | 经厂商软件导出后的候选路径 | 本次真实厂商样本实测 |
 |---|---|---|---|
 | 西门子 | 无专用入口，不能直接打开或转换 | SCL 文本可进入 ST/SCL 前端；SimaticML 不是 PLCopen XML，需要独立适配 | V19 SimaticML 实测：well-formed，但 0 POU，`check`/`convert` 均为 `PF002`、退出 1 |
-| 欧姆龙 | 无专用入口，不能直接打开或转换 | 以核实后的 Sysmac Studio XML/ST 导出路径为准；标准 XML 与原生项目分开处理 | 未验证 |
+| 欧姆龙 | 无专用入口，不能直接打开或转换 | 官方确认 IEC 61131-10 XML 导入；取得合规 XML 后才可候选解析；ST 正文可复制，独立 `.st` 导出未确认 | 未验证 |
 | 汇川 | 无专用入口，不能直接打开或转换 | AutoShop 与 InoProShop 分开；InoProShop PLCopenXML 是已有入口的候选，AutoShop 未确认该路径 | 标称 V1.9.1.6 样本：9 POU、Python 生成/导入通过，37 警告；扩展全局变量和任务丢失，行为未验证 |
 | 施耐德 | 无专用入口，不能直接打开或转换 | Machine Expert 的 PLCopenXML 是候选入口；Control Expert XEF 是另一种 XML，需要独立适配 | V15.0 XEF 实测：well-formed；默认 `PF001`+`PF002`，强制 PLCopen 也为 `PF002`，退出 1 |
 
@@ -204,16 +204,16 @@ PYTHONPATH=src python3 -m plcforge --no-color convert m340_V15.xef --frontend pl
 |---|---|---|---|---|---|---|
 | H5U、Easy / AutoShop A21；版本说明至 V4.12.0.0 | `.hcp`、`.hcpp`、`.updown` 工程；`.hclib` 工程档案 | 官方确认的 AutoShop 工程/依赖打包格式，不是 PLCopenXML；`.hclib` 可含工程、EDS、库和第三方 EtherCAT XML [I1][I2] | **否**，无前端 | **否** | **否** | 未验证 |
 | H5U、Easy / AutoShop | `.down`、`.updown`；FB `.fe` | `.updown` 只有生成时勾选工程源码才可上载/再编辑；`.fe` 只有选择“源码可见”才能查看修改，均不是纯 ST [I1] | **否** | **否**，后缀本身不保证有可读源码 | **否** | 未验证 |
-| AM、AC / InoProShop C03、V1.10.0.3 | 标准工程 `.project`；升级时在工程目录备份旧工程 | 原生工程；官方工程上载还有 AC700/AC800/AM700 等条件。`.projectarchive` 未由本次官方资料确认 [I4][I5] | **否**，无前端 | **否** | **否** | 未验证 |
-| AM、AC / InoProShop；官方历史更新说明 V1.8—V1.9 区间及 V1.10.0.3 包 | PLCOpenXML 导入/导出；实测工件标称 V1.9.1.6、AM600 | 官方确认功能存在并持续修复 LD 导入，但未给出完整 TC6 版本/对象/机型矩阵；实测工件为 `tc6_0200` [I5][I6] | —（交换文件，非原生工程） | **部分实测**：9 个 ST POU；扩展全局变量/任务未保留 | **部分实测**：Python 生成与导入通过，37 警告；非完整工程 | **未验证** |
+| AM、AC / InoProShop C03、V1.10.0.3 | 标准工程 `.project`；升级时在工程目录备份旧工程 | 原生工程；官方工程上载还有 AC700/AC800/AM700 等条件。`.projectarchive` 未由本次官方资料确认 [I3][I4] | **否**，无前端 | **否** | **否** | 未验证 |
+| AM、AC / InoProShop；官方历史更新说明 V1.8—V1.9 区间及 V1.10.0.3 包 | PLCOpenXML 导入/导出；实测工件标称 V1.9.1.6、AM600 | 官方确认功能存在并持续修复 LD 导入，但未给出完整 TC6 版本/对象/机型矩阵；实测工件为 `tc6_0200` [I4][I5] | —（交换文件，非原生工程） | **部分实测**：9 个 ST POU；扩展全局变量/任务未保留 | **部分实测**：Python 生成与导入通过，37 警告；非完整工程 | **未验证** |
 
 补充边界：
 
 - AutoShop 手册中的 LiteST 支持不等于独立 `.st` 文件导入/导出；本次未找到该文本出口的官方说明，也未找到 AutoShop 支持 PLCopenXML 的官方证据。手册中的 EtherCAT 设备 XML、Trace XML 和专用工程转换均不能当作 PLCopenXML 证据。[I1][I2]
-- InoProShop 官方更新说明明确出现“优化PLCOpenXML功能”“导入导出”等文字，可确认该平台的 XML 路径；这些历史记录不是“首次支持版本”的声明，也不能外推到 AutoShop 或所有 AM/AC 固件。[I5]
-- `.projectarchive`、InoProShopTool 控制器备份后缀/容器、AutoShop 原生文件的公开二进制规范均保持未核实。`.down/.updown` 与 `.fe` 是否含源码取决于导出选项，受保护或未含源码的文件不能用于逻辑兼容测试。[I1][I5]
+- InoProShop 官方更新说明明确出现“优化PLCOpenXML功能”“导入导出”等文字，可确认该平台的 XML 路径；这些历史记录不是“首次支持版本”的声明，也不能外推到 AutoShop 或所有 AM/AC 固件。[I4]
+- `.projectarchive`、InoProShopTool 控制器备份后缀/容器、AutoShop 原生文件的公开二进制规范均保持未核实。`.down/.updown` 与 `.fe` 是否含源码取决于导出选项，受保护或未含源码的文件不能用于逻辑兼容测试。[I1][I4]
 - 第 4.6 节的正向结果只覆盖一份标称 V1.9.1.6 工件：439 个位于 `http://www.3s-software.com/plcopenxml/globalvars` 扩展中的变量和 2 个任务没有进入 IR，运动控制/总线依赖也未解决。因此不能写成“汇川工程已兼容”。
-- 未找到明确许可的汇川官方或第三方样本不适合直接入库。`Roarpeng/LMM` 与 `ddvhhm/openFB` 均未发现 LICENSE，只作为本地分析线索；后续应取得作者授权或团队有权再分发的同源工程。[I6][I7]
+- 未找到明确许可的汇川官方或第三方样本不适合直接入库。`Roarpeng/LMM` 与 `ddvhhm/openFB` 均未发现 LICENSE，只作为本地分析线索；后续应取得作者授权或团队有权再分发的同源工程。[I5][I6]
 
 ### 5.4 施耐德：Machine Expert 与 Control Expert 必须分开
 
@@ -233,8 +233,6 @@ PYTHONPATH=src python3 -m plcforge --no-color convert m340_V15.xef --frontend pl
 - Control Expert XEF 官方可包含 entire program、DDT、变量和未保护 DFB 等广泛内容，但不是完整无损备份：硬件配置取决于选项，全局 DTM 需 ZEF，EF/EFB、受保护对象、文档等另有排除。XEF 可读不能跨级成完整工程或行为结论。[C2]
 - 本次 XEF 实测样本为 MIT 许可，但只临时分析，未扩大交付范围。另一个 MIT SoMachine `.project` 样本经检查是含 `.meta`/`.object` 等条目的 ZIP 容器，具体 SoMachine 版本未核实；它只能证明该样本可列容器，不证明当前 Machine Expert 原生工程语义可读。[C7][C8]
 - Unity Pro 是 Control Expert 13.1 及更早版本的原名；本报告不把 V15/V16 文档结论无差别回推到所有 Unity Pro 版本。[C2]
-
-<!-- VENDOR_SECTIONS_COMPLETE -->
 
 ## 6. 完整工程信息的保留边界
 
@@ -307,7 +305,7 @@ PYTHONPATH=src python3 -m plcforge --no-color convert m340_V15.xef --frontend pl
 1. **先修复实测基线，再比较厂商。** 单独处理自带 PLCopen XML 未通过官方 XSD 校验的问题，并增加根元素/格式识别与标准校验测试；否则自制样本会持续造成“已兼容”的错觉。
 2. **按第 7 节取得同源、许可清楚的厂商样本。** 优先每家一个未保护小工程，再取大型真实工程；先冻结版本与哈希，再执行转换。
 3. **先走已有入口，不为原生工程直接开发大解析器。** SCL/ST、标准 PLCopen XML 先做样本诊断和保留率统计；只有证据表明出口稳定且确有必要时，再评估 SimaticML、XEF 或厂商特定 PLCopen 扩展适配。
-4. **汇川先补官方格式证据。** AutoShop/InoProShop 与不同机型不可由 CODESYS 一般能力替代核实。
+4. **汇川按平台分头补证据。** InoProShop 需要官方对象/TC6 版本矩阵和更多版本化样本；AutoShop 需先补 PLCopenXML 或独立 ST 文本出口的官方证据，不能由 InoProShop 或 CODESYS 反推。
 5. **行为验证最后升级。** 先验证生成代码可运行，再用同一输入轨迹对照厂商软件/控制器；任务、硬件和专有库必须单列，不能混入单 POU 算法等价结论。
 
 以上均是证据与下一步建议，本任务没有新增厂商解析器或改变产品逻辑。
@@ -318,68 +316,93 @@ PYTHONPATH=src python3 -m plcforge --no-color convert m340_V15.xef --frontend pl
 
 ### 10.1 标准组织
 
-- **[P1] PLCopen，XML Exchange。** 说明 TC6 XML 用于在不同工具间交换文本和图形信息；页面标明最新规范版本为 2.01，并说明 PLCopen XML 于 2019 年成为 IEC 61131-10。  
+- **[P1] PLCopen，XML Exchange。** 说明 TC6 XML 用于在不同工具间交换文本和图形信息；页面标明最新规范版本为 2.01，并说明 PLCopen XML 于 2019 年成为 IEC 61131-10。
   https://www.plcopen.org/standards/xml-echange/
-- **[P2] PLCopen，Downloads。** 本次实际下载条目 `PLCopen XML version 2.01 xsd file`；同页也提供 `PLCopen XML technical document version 2.01.pdf` 与 IEC 61131-10 Code Components。  
+- **[P2] PLCopen，Downloads。** 本次实际下载条目 `PLCopen XML version 2.01 xsd file`；同页也提供 `PLCopen XML technical document version 2.01.pdf` 与 IEC 61131-10 Code Components。
   https://www.plcopen.org/downloads/
-- **[P3] PLCopen，Code Components of IEC 61131-10。** 说明 IEC 标准 Code Components 的下载与许可提示；不能据此推定任何厂商样本可再分发。  
+- **[P3] PLCopen，Code Components of IEC 61131-10。** 说明 IEC 标准 Code Components 的下载与许可提示；不能据此推定任何厂商样本可再分发。
   https://www.plcopen.org/standards/xml-echange/code-components/
 
 ### 10.2 西门子
 
-- **[S1] Siemens，《Editing projects》V21（11/2025）与 V20（11/2024）。** 项目/参考项目扩展名、归档与 Retrieve；另以 Openness V21 的 `Archiving and Retrieving a project` 核实压缩模式。  
-  https://docs.tia.siemens.cloud/r/en-us/v21/editing-projects/using-reference-projects/opening-and-closing-a-reference-project  
-  https://docs.tia.siemens.cloud/r/en-us/v21/editing-projects/archiving-and-retrieving-projects/working-with-project-archives  
-  https://docs.tia.siemens.cloud/r/en-us/v20/editing-projects/using-reference-projects/opening-and-closing-a-reference-project  
+- **[S1] Siemens，《Editing projects》V21（11/2025）与 V20（11/2024）。** 项目/参考项目扩展名、归档与 Retrieve；另以 Openness V21 的 `Archiving and Retrieving a project` 核实压缩模式。
+  https://docs.tia.siemens.cloud/r/en-us/v21/editing-projects/using-reference-projects/opening-and-closing-a-reference-project
+  https://docs.tia.siemens.cloud/r/en-us/v21/editing-projects/archiving-and-retrieving-projects/working-with-project-archives
+  https://docs.tia.siemens.cloud/r/en-us/v20/editing-projects/using-reference-projects/opening-and-closing-a-reference-project
   https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/tia-portal-openness-api/functions-for-projects-and-project-data/archiving-and-retrieving-a-project
-- **[S2] Siemens，《TIA Portal Openness: API for automation of engineering workflows》V21（03/2026）。** `Basic principles of importing/exporting`、`Field of application for Import/Export`、`Version Specific Simatic ML Import`、`Exporting blocks`、`Exporting blocks with know-how protection`、`Changes of the object model and XML file format`。  
-  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/overview/basic-principles-of-importing/exporting  
-  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/overview/field-of-application-for-import/export  
-  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/overview/version-specific-simatic-ml-import  
-  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/importing/exporting-data-of-a-plc-device/blocks/exporting-blocks  
-  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/importing/exporting-data-of-a-plc-device/blocks/exporting-blocks-with-know-how-protection  
+- **[S2] Siemens，《TIA Portal Openness: API for automation of engineering workflows》V21（03/2026）。** `Basic principles of importing/exporting`、`Field of application for Import/Export`、`Version Specific Simatic ML Import`、`Exporting blocks`、`Exporting blocks with know-how protection`、`Changes of the object model and XML file format`。
+  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/overview/basic-principles-of-importing/exporting
+  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/overview/field-of-application-for-import/export
+  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/overview/version-specific-simatic-ml-import
+  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/importing/exporting-data-of-a-plc-device/blocks/exporting-blocks
+  https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/importing/exporting-data-of-a-plc-device/blocks/exporting-blocks-with-know-how-protection
   https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/export/import/importing/exporting-data-of-a-plc-device/blocks/changes-of-the-object-model-and-xml-file-format
-- **[S3] Siemens，《Creating and managing blocks》V21（11/2025），`Saving blocks as external source files`；Openness V21，`Generate source from block`。**  
-  https://docs.tia.siemens.cloud/r/en-us/v21/creating-and-managing-blocks/using-external-source-files-for-stl-and-scl/saving-blocks-as-external-source-files  
+- **[S3] Siemens，《Creating and managing blocks》V21（11/2025），`Saving blocks as external source files`；Openness V21，`Generate source from block`。**
+  https://docs.tia.siemens.cloud/r/en-us/v21/creating-and-managing-blocks/using-external-source-files-for-stl-and-scl/saving-blocks-as-external-source-files
   https://docs.tia.siemens.cloud/r/en-us/v21/tia-portal-openness-api-for-automation-of-engineering-workflows/tia-portal-openness-api/functions-for-accessing-the-data-of-a-plc-device/blocks/generate-source-from-block
-- **[S4] Siemens，《Creating and managing blocks》，`Exporting and importing blocks in SIMATIC SD format`，V21（11/2025）与 V20（11/2024）。**  
-  https://docs.tia.siemens.cloud/r/en-us/v21/creating-and-managing-blocks/exporting-and-importing-blocks-in-simatic-sd-format-s7-1200-s7-1500-s7-1200-g2/exporting-and-importing-blocks-in-simatic-sd-format-s7-1200-s7-1500-s7-1200-g2  
+- **[S4] Siemens，《Creating and managing blocks》，`Exporting and importing blocks in SIMATIC SD format`，V21（11/2025）与 V20（11/2024）。**
+  https://docs.tia.siemens.cloud/r/en-us/v21/creating-and-managing-blocks/exporting-and-importing-blocks-in-simatic-sd-format-s7-1200-s7-1500-s7-1200-g2/exporting-and-importing-blocks-in-simatic-sd-format-s7-1200-s7-1500-s7-1200-g2
   https://docs.tia.siemens.cloud/r/en-us/v20/creating-and-managing-blocks/exporting-and-importing-blocks-in-simatic-sd-format-s7-1200-s7-1500/exporting-and-importing-blocks-in-simatic-sd-format-s7-1200-s7-1500
-- **[S5] Siemens，`tia-portal-openness-code-snippets` 官方仓库、V19 `Block_1` 与许可证。** 本次读取的仓库提交为 `4a8cc79d0666633e524e52f3335d99ff993f8830`。  
-  https://github.com/siemens/tia-portal-openness-code-snippets  
-  https://github.com/siemens/tia-portal-openness-code-snippets/blob/4a8cc79d0666633e524e52f3335d99ff993f8830/src/TiaPortal.Openness.CodeSnippets.Plain.Step7/PLC/ProgramBlocks/Resources/PLCBlocks/Block_1  
+- **[S5] Siemens，`tia-portal-openness-code-snippets` 官方仓库、V19 `Block_1` 与许可证。** 本次读取的仓库提交为 `4a8cc79d0666633e524e52f3335d99ff993f8830`。
+  https://github.com/siemens/tia-portal-openness-code-snippets
+  https://github.com/siemens/tia-portal-openness-code-snippets/blob/4a8cc79d0666633e524e52f3335d99ff993f8830/src/TiaPortal.Openness.CodeSnippets.Plain.Step7/PLC/ProgramBlocks/Resources/PLCBlocks/Block_1
   https://github.com/siemens/tia-portal-openness-code-snippets/blob/4a8cc79d0666633e524e52f3335d99ff993f8830/LICENSE.md
 
 ### 10.3 欧姆龙
 
-- **[O1] OMRON，《Automation Software Sysmac Studio Version 1 Operation Manual》W504-E1-53，2025-01，对应 Ver.1.61。** §3-3-7（印刷页 3-20 / PDF 92）核实 `.smc/.smc2/.csm/.csm2`；§4-6-2（4-156 / PDF 342）核实 ST 复制；§8-20（8-144 / PDF 822）区分 Simulink XML；§8-21（8-146 / PDF 824）核实 IEC 61131-10 导入对象、样本/schema 路径和 CPU 条件。临时核对文件 SHA-256：`a9a7bcd19f4af04dc23eabb129c8297249a976a0fe805094fe5a2235cae83f21`。  
+- **[O1] OMRON，《Automation Software Sysmac Studio Version 1 Operation Manual》W504-E1-53，2025-01，对应 Ver.1.61。** §3-3-7（印刷页 3-20 / PDF 92）核实 `.smc/.smc2/.csm/.csm2`；§4-6-2（4-156 / PDF 342）核实 ST 复制；§8-20（8-144 / PDF 822）区分 Simulink XML；§8-21（8-146 / PDF 824）核实 IEC 61131-10 导入对象、样本/schema 路径和 CPU 条件。临时核对文件 SHA-256：`a9a7bcd19f4af04dc23eabb129c8297249a976a0fe805094fe5a2235cae83f21`。
   https://assets.omron.eu/downloads/latest/manual/en/w504_sysmac_studio_operation_manual_en.pdf
-- **[O2] OMRON，Sysmac Studio Update Information。** Ver.1.08 条目确认 `smc2/csm2`，Ver.1.30 条目只写 `Support the import function of IEC61131-10XML`；本次页面覆盖至 Ver.1.68（2026-10）。  
+- **[O2] OMRON，Sysmac Studio Update Information。** Ver.1.08 条目确认 `smc2/csm2`，Ver.1.30 条目只写 `Support the import function of IEC61131-10XML`；本次页面覆盖至 Ver.1.68（2026-10）。
   https://www.fa.omron.co.jp/product/tool/454/sysmac-studio/e1_doc.html
-- **[O3] OMRON，《SYSMAC CX-Programmer Ver. 9.@ / CXONE-AL@@D-V4 Operation Manual》W446-E1-23，2023-07。** Part 1 Chapter 2（印刷页 10 / PDF 58）及 Chapter 3（印刷页 52 / PDF 100）核实 `.CXP/.CXT/.CXPS`。临时核对文件 SHA-256：`e9fe649453771f206721b845147ee4def9ca2b91d4c650526cb577bccef2770a`。  
+- **[O3] OMRON，《SYSMAC CX-Programmer Ver. 9.@ / CXONE-AL@@D-V4 Operation Manual》W446-E1-23，2023-07。** Part 1 Chapter 2（印刷页 10 / PDF 58）及 Chapter 3（印刷页 52 / PDF 100）核实 `.CXP/.CXT/.CXPS`。临时核对文件 SHA-256：`e9fe649453771f206721b845147ee4def9ca2b91d4c650526cb577bccef2770a`。
   https://assets.omron.eu/downloads/latest/manual/en/w446_cx-programmer_operation_manual_en.pdf
-- **[O4] 非官方线索：Yellax，`Sysmac Studio nowadays supports PLCopen XML import/export`，2020-05-07。** 文中声称 Ver.1.30+ 导出需向 Omron 联系人申请激活程序；只用于提出待核实路径，不作为 Omron 官方兼容承诺。  
+- **[O4] 非官方线索：Yellax，`Sysmac Studio nowadays supports PLCopen XML import/export`，2020-05-07。** 文中声称 Ver.1.30+ 导出需向 Omron 联系人申请激活程序；只用于提出待核实路径，不作为 Omron 官方兼容承诺。
   https://www.yellax.com/en/nieuws/sysmac-studio-nowadays-supports-plcopen-xml-import-export/
 
 ### 10.4 汇川
 
-- **[I1] 汇川，《H5U&Easy系列可编程逻辑控制器编程手册》19011157-SC A21，2026-09。** §5.4.2、§5.4.7、§5.10、§6.11.1、§26.1、§29.3；PDF 物理页 80、83、95、210、899、1011—1023。  
-  https://www.inovance.com/portal/serviceSupport/download?key=H5U  
+- **[I1] 汇川，《H5U&Easy系列可编程逻辑控制器编程手册》19011157-SC A21，2026-09。** §5.4.2、§5.4.7、§5.10、§6.11.1、§26.1、§29.3；PDF 物理页 80、83、95、210、899、1011—1023。
+  https://www.inovance.com/portal/serviceSupport/download?key=H5U
   https://newweb.inovance.com/owfile/ProdDoc/SC/19011157-SC/A21/19011157-SC_A21_H5U%26Easy%E7%B3%BB%E5%88%97%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C_CN_20260904.pdf
-- **[I2] 汇川，《AutoShop V4.12.0.0版本说明书》19012791-SC A02，2026-06。** LiteST 版本记录与 EtherCAT XML 范围；不能改称其他补丁版本的说明书。  
+- **[I2] 汇川，《AutoShop V4.12.0.0版本说明书》19012791-SC A02，2026-06。** LiteST 版本记录与 EtherCAT XML 范围；不能改称其他补丁版本的说明书。
   https://newweb.inovance.com/owfile/ProdDoc/SC/19012791-SC/A02/19012791-SC_A02_AutoShop%20V4.12.0.0%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E%E4%B9%A6_CN_20260616.pdf
-- **[I4] 汇川，《中型PLC编程手册（软件使用篇）》PS00003145_PDF_CN C03，2026-08；InoProShop V1.10.0.3。** §3.14 工程上载、§4.2.8 `.project`、§4.4.2 EtherCAT XML。  
+- **[I3] 汇川，《中型PLC编程手册（软件使用篇）》PS00003145_PDF_CN C03，2026-08；InoProShop V1.10.0.3。** §3.14 工程上载、§4.2.8 `.project`、§4.4.2 EtherCAT XML。
   https://newweb.inovance.com/owfile/ProdDoc/SC/PS00003145_PDF_CN/C03/%E4%B8%AD%E5%9E%8BPLC%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C%EF%BC%88%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%89-CN-C03.PDF
-- **[I5] 汇川，InoProShop V1.10.0.3 官方完整包内《InoProShop(V1.10.0.3)更新说明》，2026-08。** PDF 物理页 10、12—17、24、28：PLCOpenXML 导入导出、LD 导入优化、工程升级备份和控制器备份条件。包内嵌套路径为 `软件升级说明文档/InoProShop(V1.10.0.3)更新说明.pdf`。  
-  https://www.inovance.com/portal-front/api/support/doc/search?key=InoProShop&showChannel=2  
+- **[I4] 汇川，InoProShop V1.10.0.3 官方完整包内《InoProShop(V1.10.0.3)更新说明》，2026-08。** PDF 物理页 10、12—17、24、28：PLCOpenXML 导入导出、LD 导入优化、工程升级备份和控制器备份条件。包内嵌套路径为 `软件升级说明文档/InoProShop(V1.10.0.3)更新说明.pdf`。
+  https://www.inovance.com/portal-front/api/support/doc/search?key=InoProShop&showChannel=2
   https://newweb.inovance.com/owfile/upload/docInfo/2026/08/14/7bd0c718-aa9b-4c90-ab51-59291c6df7c9.zip
-- **[I6] 第三方工件：Roarpeng/LMM。** 固定提交 `a625078c640483596da6f77ac362f6aedd8d60e5`；文件头标称 InoProShop V1.9.1.6，README 自述 AM600。未发现 LICENSE，非汇川官方支持证明。  
-  https://github.com/Roarpeng/LMM/tree/a625078c640483596da6f77ac362f6aedd8d60e5  
+- **[I5] 第三方工件：Roarpeng/LMM。** 固定提交 `a625078c640483596da6f77ac362f6aedd8d60e5`；文件头标称 InoProShop V1.9.1.6，README 自述 AM600。未发现 LICENSE，非汇川官方支持证明。
+  https://github.com/Roarpeng/LMM/tree/a625078c640483596da6f77ac362f6aedd8d60e5
   https://raw.githubusercontent.com/Roarpeng/LMM/a625078c640483596da6f77ac362f6aedd8d60e5/LMM_g_1.3.xml
-- **[I7] 第三方工件：ddvhhm/openFB。** AutoShop 原生工程和 FB 线索；未发现 LICENSE，不作为格式规范或再分发样本。  
+- **[I6] 第三方工件：ddvhhm/openFB。** AutoShop 原生工程和 FB 线索；未发现 LICENSE，不作为格式规范或再分发样本。
   https://github.com/ddvhhm/openFB
 
-<!-- OTHER_VENDOR_REFERENCES -->
+### 10.5 施耐德
+
+- **[C1] Schneider Electric，FAQ000259996，`What is the difference between .STU, .STA, .ZEF, and .XEF files in EcoStruxure Control Expert?`，2023-09-11 发布、2025-12-30 修改。**
+  https://www.se.com/ca/en/faqs/FAQ000259996/
+- **[C2] Schneider Electric，《EcoStruxure Control Expert – Operating Modes》33003101.31，2026-06，Control Expert 16.4。** 印刷页 54、110、216、1152—1155：STU/STA、XEF/ZEF、硬件配置选项和导出排除。
+  https://www.se.com/us/en/download/document/33003101K01000/
+  https://download.se.com/files?p_Doc_Ref=33003101K01000&p_enDocType=User+guide&p_File_Name=EcoStruxure-Control-Expert-Operating-Modes-EN-33003101.31.pdf
+- **[C3] Schneider Electric，《EcoStruxure Machine Expert – Software, User Guide》EIO0000004321.04，2024-07，内含 V2.2、Machine Expert V2.2。** Programming Guide 印刷页 784、786—787（PDF 872、874—875）：Native Import/Export 与 PLCOpenXML Export；Compatibility and Migration 印刷页 10、12、20、14（PDF 916、918、926、920）：`.project/.projectarchive`、归档内容和升级兼容。
+  https://www.se.com/us/en/download/document/EIO0000004321/
+  https://download.se.com/files?p_Doc_Ref=EIO0000004321&p_enDocType=User+guide&p_File_Name=MachineExpert-Software-EN-EIO0000004321-04.pdf
+- **[C4] Schneider Electric，Machine Expert V2.1 在线帮助，`Export PLCopenXML...`；V1.2 帮助亦有同类页。** 在线帮助页未标发布日期，版本以 URL 中的 V2.1/V1.2 为限。
+  https://product-help.se.com/docs/Machine%20Expert/V2.1/en/SoMMenu/SoMMenu/D-SE-0083972.html
+  https://product-help.se.com/docs/Machine%20Expert/V1.2/en/SoMMenu/SoMMenu/Project_Menu/Project_Menu-16.htm
+- **[C5] Schneider Electric，Machine Expert V2.1 在线帮助，`Import PLCopenXML...`；V1.2 帮助亦有同类页。** V2.1 文档给出混合全局变量列表的往返限制。
+  https://product-help.se.com/docs/Machine%20Expert/V2.1/en/SoMMenu/SoMMenu/D-SE-0083973.html
+  https://product-help.se.com/docs/Machine%20Expert/V1.2/en/SoMMenu/SoMMenu/Project_Menu/Project_Menu-17.htm
+- **[C6] Schneider Electric，《EcoStruxure Machine Expert – Basic, Operating Guide》EIO0000003281.04，2025-09，Basic V1.4。** M221/TM3 与 `.smbp/.smbe`。
+  https://www.se.com/us/en/download/document/EIO0000003281/
+  https://download.se.com/files?p_Doc_Ref=EIO0000003281&p_enDocType=User+guide&p_File_Name=ESME-Basic-Operating-Guide-EN-EIO0000003281-04.pdf
+- **[C7] 第三方样本：estradege/controlexpert，MIT License，Control Expert V15.0 M340。** 固定提交 `ab9e011e8a5bd9aa0aa81f1c53eab13ba00f1600`；样本目录含 XEF/ZEF/STU/STA。
+  https://github.com/estradege/controlexpert/tree/ab9e011e8a5bd9aa0aa81f1c53eab13ba00f1600
+  https://github.com/estradege/controlexpert/blob/ab9e011e8a5bd9aa0aa81f1c53eab13ba00f1600/LICENSE
+  https://github.com/estradege/controlexpert/tree/ab9e011e8a5bd9aa0aa81f1c53eab13ba00f1600/ControlExpert/ControlExpert.XefTests/Stu
+- **[C8] 第三方样本：io-systems/gersscipal-suivi-somachine，MIT License，SoMachine `.project`。** 固定提交 `dc9fabff1108e39275c11269c44976293309f07c`；README 未标具体 SoMachine 版本，只作样本级容器检查线索。
+  https://github.com/io-systems/gersscipal-suivi-somachine/tree/dc9fabff1108e39275c11269c44976293309f07c
+  https://github.com/io-systems/gersscipal-suivi-somachine/blob/dc9fabff1108e39275c11269c44976293309f07c/LICENCE
 
 ### 10.6 本地源码与实测依据
 
